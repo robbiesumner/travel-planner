@@ -1,0 +1,36 @@
+@import "../../styles/variables";
+
+.preferences-grid {
+  display: grid;
+  gap: 1rem;
+  max-width: 400px;
+}
+
+.toggle-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: $color-secondary;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button.active {
+  background-color: $color-accent;
+}
+
+.slider-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+}

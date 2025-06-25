@@ -1,0 +1,31 @@
+<form [formGroup]="form" class="preferences-grid">
+  <div class="toggle-section">
+    <label>Reiseziel</label>
+    <div class="toggle-group">
+      <button type="button" (click)="setDestination('sea')" [class.active]="form.value.destinationType === 'sea'">🌊 Meer</button>
+      <button type="button" (click)="setDestination('mountain')" [class.active]="form.value.destinationType === 'mountain'">🏔️ Berge</button>
+    </div>
+  </div>
+
+  <div class="toggle-section">
+    <label>Klima</label>
+    <div class="toggle-group">
+      <button type="button" (click)="setClimate('warm')" [class.active]="form.value.climate === 'warm'">☀️ Warm</button>
+      <button type="button" (click)="setClimate('cold')" [class.active]="form.value.climate === 'cold'">❄️ Kalt</button>
+    </div>
+  </div>
+
+  <div class="slider-section">
+    <label>Erfahrung</label>
+    <div class="slider-wrapper">
+      <span>Einsteiger</span>
+      <input type="range" formControlName="experienceLevel" min="0" max="10">
+      <span>Profi</span>
+    </div>
+  </div>
+
+  <div class="nav-buttons">
+    <button routerLink="/" type="button" class="nav-btn">Zurück</button>
+    <button type="button" (click)="onNext()" class="nav-btn">Weiter</button>
+  </div>
+</form>
