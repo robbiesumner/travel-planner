@@ -10,6 +10,7 @@
   background: #fff;
   border-bottom: 1px solid #ccc;
   z-index: 1000;
+  position: relative;
 }
 
 .nav-links {
@@ -27,4 +28,49 @@
 
 .nav-links a.active {
   color: $color-accent;
+}
+
+.nav-toggle {
+  display: none;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  span {
+    width: 25px;
+    height: 3px;
+    background: #333;
+    margin: 4px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #fff;
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .nav-links li {
+    padding: 0.5rem 0;
+    text-align: center;
+  }
+
+  .nav-toggle:checked ~ .hamburger + .nav-links {
+    max-height: 200px;
+  }
 }
