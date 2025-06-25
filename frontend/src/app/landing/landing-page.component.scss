@@ -36,3 +36,18 @@
 .cta-button:hover {
   transform: scale(1.05);
 }
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: 50vh;
+  }
+
+  .overlay h1,
+  .overlay p {
+    font-size: 70%;
+  }
+
+  .cta-button {
+    font-size: 0.7rem;
+  }
+}

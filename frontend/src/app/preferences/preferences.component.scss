@@ -24,6 +24,7 @@ button.active {
   background-color: $color-accent;
 }
 
+
 .slider-wrapper {
   display: flex;
   align-items: center;
@@ -33,4 +34,18 @@ button.active {
 .nav-buttons {
   display: flex;
   justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+  .preferences-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .toggle-group {
+    flex-direction: column;
+  }
+
+  .toggle-group button {
+    width: 100%;
+  }
 }

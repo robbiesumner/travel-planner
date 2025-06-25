@@ -1,5 +1,11 @@
 <nav class="navbar">
   <a class="logo" routerLink="/">Travel Planner</a>
+  <input id="nav-toggle" class="nav-toggle" type="checkbox" />
+  <label for="nav-toggle" class="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </label>
   <ul class="nav-links">
     <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
     <li><a routerLink="/preferences" routerLinkActive="active">Preferences</a></li>
