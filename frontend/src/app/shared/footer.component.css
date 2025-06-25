@@ -1,0 +1,14 @@
+.footer {
+  text-align: center;
+  padding: 1rem;
+  background: #f5f5f5;
+}
+
+.social-icons {
+  margin-top: 0.5rem;
+}
+
+.social-icons a {
+  margin: 0 0.5rem;
+  color: inherit;
+}

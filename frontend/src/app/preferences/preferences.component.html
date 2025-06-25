@@ -1,0 +1,96 @@
+<form [formGroup]="form" class="preferences-grid">
+  <div class="toggle-section">
+    <label>Reiseziel</label>
+    <div class="toggle-group">
+      <button
+        type="button"
+        aria-label="Reiseziel Meer wählen"
+        (click)="setDestination('sea')"
+        (keydown.space)="setDestination('sea')"
+        [class.active]="form.value.destinationType === 'sea'"
+        (mouseenter)="onEnter('sea')"
+        (mouseleave)="onLeave()"
+        [@pulse]="hovered === 'sea' ? 'hover' : 'rest'"
+      >
+        🌊 Meer
+      </button>
+      <button
+        type="button"
+        aria-label="Reiseziel Berge wählen"
+        (click)="setDestination('mountain')"
+        (keydown.space)="setDestination('mountain')"
+        [class.active]="form.value.destinationType === 'mountain'"
+        (mouseenter)="onEnter('mountain')"
+        (mouseleave)="onLeave()"
+        [@pulse]="hovered === 'mountain' ? 'hover' : 'rest'"
+      >
+        🏔️ Berge
+      </button>
+    </div>
+  </div>
+
+  <div class="toggle-section">
+    <label>Klima</label>
+    <div class="toggle-group">
+      <button
+        type="button"
+        aria-label="Klima warm wählen"
+        (click)="setClimate('warm')"
+        (keydown.space)="setClimate('warm')"
+        [class.active]="form.value.climate === 'warm'"
+        (mouseenter)="onEnter('warm')"
+        (mouseleave)="onLeave()"
+        [@pulse]="hovered === 'warm' ? 'hover' : 'rest'"
+      >
+        ☀️ Warm
+      </button>
+      <button
+        type="button"
+        aria-label="Klima kalt wählen"
+        (click)="setClimate('cold')"
+        (keydown.space)="setClimate('cold')"
+        [class.active]="form.value.climate === 'cold'"
+        (mouseenter)="onEnter('cold')"
+        (mouseleave)="onLeave()"
+        [@pulse]="hovered === 'cold' ? 'hover' : 'rest'"
+      >
+        ❄️ Kalt
+      </button>
+    </div>
+  </div>
+
+  <div class="slider-section">
+    <label>Erfahrung</label>
+    <div class="slider-wrapper">
+      <span>Einsteiger</span>
+      <input type="range" formControlName="experienceLevel" min="0" max="10">
+      <span>Profi</span>
+    </div>
+  </div>
+
+  <div class="nav-buttons">
+    <button
+      routerLink="/"
+      type="button"
+      class="nav-btn"
+      aria-label="Zurück zur Startseite"
+      (mouseenter)="onEnter('back')"
+      (mouseleave)="onLeave()"
+      [@pulse]="hovered === 'back' ? 'hover' : 'rest'"
+    >
+      Zurück
+    </button>
+    <button
+      type="button"
+      class="nav-btn"
+      aria-label="Weiter"
+      (click)="onNext()"
+      (keydown.space)="onNext()"
+      (mouseenter)="onEnter('next')"
+      (mouseleave)="onLeave()"
+      [@pulse]="hovered === 'next' ? 'hover' : 'rest'"
+    >
+      Weiter
+    </button>
+  </div>
+</form>
