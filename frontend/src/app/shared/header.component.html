@@ -1,7 +1,8 @@
 <nav class="navbar">
   <a class="logo" routerLink="/">Travel Planner</a>
   <ul class="nav-links">
-    <li><a routerLink="/">Home</a></li>
-    <li><a routerLink="/about">About</a></li>
+    <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
+    <li><a routerLink="/preferences" routerLinkActive="active">Preferences</a></li>
+    <li><a routerLink="/about" routerLinkActive="active">About</a></li>
   </ul>
 </nav>
