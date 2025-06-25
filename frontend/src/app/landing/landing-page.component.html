@@ -2,6 +2,15 @@
   <div class="overlay">
     <h1>Dein nächstes Abenteuer wartet</h1>
     <p>Entdecke die Welt ganz nach deinen Vorlieben.</p>
-    <button routerLink="/preferences" class="cta-button">Jetzt Präferenzen wählen</button>
+    <button
+      routerLink="/preferences"
+      class="cta-button"
+      aria-label="Präferenzen wählen"
+      (mouseenter)="hoverState='hover'"
+      (mouseleave)="hoverState='rest'"
+      [@pulse]="hoverState"
+    >
+      Jetzt Präferenzen wählen
+    </button>
   </div>
 </div>
