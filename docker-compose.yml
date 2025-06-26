@@ -1,0 +1,7 @@
+services:
+  travel_service:
+    build: ./backend/travel_service
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
