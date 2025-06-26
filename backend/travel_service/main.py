@@ -1,7 +1,6 @@
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from google import genai
-from dotenv import load_dotenv
 
 import os
 import json
@@ -28,7 +27,6 @@ class Destination(BaseModel):
     description: str
 
 
-load_dotenv()
 genai_client = genai.Client(api_key=os.getenv("GENAI_API_KEY"))
 
 
