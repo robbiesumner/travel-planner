@@ -1,5 +1,6 @@
-fastapi
-uvicorn
+fastapi[standard]
+sqlalchemy
+pydantic_settings
+psycopg2-binary
 python-jose[cryptography]
 passlib[bcrypt]
-pydantic[email]

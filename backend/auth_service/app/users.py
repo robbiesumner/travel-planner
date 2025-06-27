@@ -1,22 +1,52 @@
-from .models import UserInDB
-from typing import Optional
+import sqlalchemy
+from sqlalchemy import Column, String
+from sqlalchemy.orm import declarative_base, sessionmaker
+from sqlalchemy.exc import NoResultFound
+
+from .models import User, UserInDB
+from .config import settings
 
 
-# Simulierte Datenbank (ersetzen wir später durch echte DB)
-fake_users_db = {
-    "test@example.com": {
-        "username": "test@example.com",
-        "full_name": "Max Mustermann",
-        "hashed_password": "$2b$12$...deinHash...",
-    }
-}
+POSTGRES_URL = f"postgresql://{settings.POSTGRES_USER}:{settings.POSTGRES_PASSWORD}@{settings.POSTGRES_HOST}:{settings.POSTGRES_PORT}/{settings.POSTGRES_DB}"
+
+Base = declarative_base()
+
+
+class UserTable(Base):
+    __tablename__ = "users"
+    username = Column(String, primary_key=True, index=True)
+    full_name = Column(String)
+    hashed_password = Column(String)
+
+
+engine = sqlalchemy.create_engine(POSTGRES_URL)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+# Create the table if it doesn't exist
+Base.metadata.create_all(bind=engine)
+
 
 def get_user_by_username(username: str):
-    user_dict = fake_users_db.get(username)
-    if not user_dict:
+    session = SessionLocal()
+    try:
+        user = session.query(UserTable).filter(UserTable.username == username).one()
+        return User(
+            username=user.username,
+            full_name=user.full_name,
+        )
+    except NoResultFound:
         return None
-    return UserInDB(**user_dict)  
+    finally:
+        session.close()
 
 
 def save_user(user: UserInDB):
-    fake_users_db[user.username] = user.dict()
+    session = SessionLocal()
+    db_user = UserTable(
+        username=user.username,
+        full_name=user.full_name,
+        hashed_password=user.hashed_password,
+    )
+    session.merge(db_user)
+    session.commit()
+    session.close()

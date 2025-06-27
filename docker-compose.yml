@@ -1,0 +1,27 @@
+services:
+  auth_service:
+    build: ./backend/auth_service
+    ports:
+      - 8001:80
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=travel_planner
+      - POSTGRES_HOST=postgres
+    depends_on:
+      - postgres
+      
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: travel_planner
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+    driver: local
