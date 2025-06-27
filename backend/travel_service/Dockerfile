@@ -1,13 +1,12 @@
 FROM python:3.13-slim
 
-WORKDIR /app
 
+WORKDIR /code
 COPY requirements.txt .
-RUN pip install --upgrade pip && pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
+COPY ./app /code/app
 
-EXPOSE 8000
+EXPOSE 80
 
-# Start FastAPI server
-CMD ["fastapi", "run", "main.py"]
+CMD ["fastapi", "run", "app/main.py", "--port", "80"]

@@ -1,30 +1,14 @@
-from fastapi import FastAPI
+from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 from google import genai
 
 import os
 import json
-from pydantic import BaseModel, Field
-from typing import Optional
 
-app = FastAPI(title="Travel Planner Service")
+from app.models import TravelConfig
 
 
-class TravelConfig(BaseModel):
-    residency: str = Field(examples=["Germany", "USA", "India"])
-    cost: int = Field(
-        examples=[1000, 2000, 5000], description="Maximum budget for the trip in USD"
-    )
-    duration: int = Field(examples=[3, 4, 10], description="Time window in days")
-    destination_type: Optional[str] = Field(examples=["beach", "city", "mountain"])
-    temperature: Optional[int] = Field(
-        examples=[-10, 0, 20, 30], description="Preferred temperature in Celsius"
-    )
-
-
-class Destination(BaseModel):
-    name: str
-    description: str
+router = APIRouter()
 
 
 genai_client = genai.Client(api_key=os.getenv("GENAI_API_KEY"))
@@ -41,7 +25,7 @@ def clean_genai_json_response(text: str) -> str:
     return text.strip()
 
 
-@app.post("/destinations/")
+@router.post("/destinations/")
 def destinations(config: TravelConfig):
     prompt = f"""
         Recommend travel destinations based on the following configuration. The configuration includes:
@@ -85,7 +69,7 @@ def destinations(config: TravelConfig):
         )
 
 
-@app.post("/trip/")
+@router.post("/trip/")
 def trip(config: TravelConfig, destination: str):
     prompt = f"""
         Plan a complete trip based on the following configuration. The configuration includes:

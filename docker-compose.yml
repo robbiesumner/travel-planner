@@ -2,6 +2,19 @@ services:
   travel_service:
     build: ./backend/travel_service
     ports:
-      - "8000:8000"
+      - 8000:80
+    environment:
+      - MONGODB_URI=mongodb://mongo_db:27017/travel_planner
+      - MONGODB_DB=travel_planner
     env_file:
       - .env
+    depends_on:
+      - mongo_db
+  mongo_db:
+    image: mongo:latest
+    volumes:
+      - mongo_data:/data/db
+      
+volumes:
+  mongo_data:
+    driver: local
