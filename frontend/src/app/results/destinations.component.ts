@@ -14,6 +14,7 @@ import { Preferences } from '../core/models/preferences';
 })
 export class DestinationsComponent implements OnInit {
   destinations: Destination[] = [];
+  preferences: Preferences | undefined;
 
   constructor(
     private router: Router,
@@ -25,11 +26,12 @@ export class DestinationsComponent implements OnInit {
     const statePrefs = this.router.getCurrentNavigation()?.extras.state as { preferences?: Preferences };
     const prefs: Preferences | undefined = statePrefs?.preferences || this.route.snapshot.queryParams as any;
     if (prefs) {
+      this.preferences = prefs;
       this.suggestionService.getSuggestions(prefs).subscribe(data => this.destinations = data);
     }
   }
 
   openDetails(id: string) {
-    this.router.navigate(['/results', id]);
+    this.router.navigate(['/results', id], { state: { preferences: this.preferences } });
   }
 }
