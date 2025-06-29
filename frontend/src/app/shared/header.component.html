@@ -1,0 +1,44 @@
+<nav class="navbar">
+  <a class="logo" routerLink="/">Travel Planner</a>
+  <input id="nav-toggle" class="nav-toggle" type="checkbox" />
+  <label for="nav-toggle" class="hamburger">
+    <span></span><span></span><span></span>
+  </label>
+  <ul class="nav-links">
+    <li>
+      <a
+        routerLink="/"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >Home</a>
+    </li>
+    <li>
+      <a
+        routerLink="/preferences"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >Preferences</a>
+    </li>
+    <li>
+      <a
+        routerLink="/results"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >Ergebnisse</a>
+    </li>
+    <li>
+      <a
+        routerLink="/history"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >Verlauf</a>
+    </li>
+    <li>
+      <a
+        routerLink="/about"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >About</a>
+    </li>
+  </ul>
+</nav>
