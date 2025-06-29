@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import {
@@ -49,7 +49,12 @@ export class PreferencesComponent {
     this.form = this.fb.group({
       destinationType: [''],
       climate: [''],
-      experienceLevel: [5]
+      experienceLevel: [5],
+      residency: ['', Validators.required],
+      budget: [null],
+      tripType: [''],
+      durationDays: [1],
+      temperature: [15]
     });
   }
 
