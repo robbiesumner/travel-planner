@@ -2,8 +2,8 @@
 
 .preferences-grid {
   display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
-  max-width: 400px;
 }
 
 .toggle-group {
@@ -40,6 +40,67 @@ button:focus,
 .nav-buttons {
   display: flex;
   justify-content: space-between;
+}
+
+.input-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.budget-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.suffix {
+  color: $color-secondary;
+}
+
+.error {
+  color: red;
+  font-size: 0.8rem;
+}
+
+.required {
+  color: red;
+}
+
+// Field wrapper styling
+mat-form-field,
+.field {
+  border: 1px solid $color-secondary;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+
+  &:hover {
+    border-color: $color-accent;
+    box-shadow: 0 0 0 2px rgba($color-accent, 0.2);
+  }
+}
+
+// Helper text styling
+.helper-text {
+  font-size: 0.75rem;
+  color: gray;
+}
+
+// Custom slider colors
+input[type='range'] {
+  &::-webkit-slider-thumb {
+    background-color: $color-accent;
+  }
+  &::-moz-range-thumb {
+    background-color: $color-accent;
+  }
+  &::-webkit-slider-runnable-track {
+    background-color: lighten($color-accent, 30%);
+  }
+  &::-moz-range-track {
+    background-color: lighten($color-accent, 30%);
+  }
 }
 
 @media (max-width: 768px) {
