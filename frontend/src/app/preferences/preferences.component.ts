@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { RouterLink, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import {
   trigger,
@@ -45,11 +45,16 @@ export class PreferencesComponent {
   form: FormGroup;
   hovered = 'rest';
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private router: Router) {
     this.form = this.fb.group({
       destinationType: [''],
       climate: [''],
-      experienceLevel: [5]
+      experienceLevel: [5],
+      residency: ['', Validators.required],
+      budget: [null],
+      tripType: [''],
+      durationDays: [1],
+      temperature: [15]
     });
   }
 
@@ -70,7 +75,6 @@ export class PreferencesComponent {
   }
 
   onNext() {
-    // Placeholder for future navigation or search logic
-    console.log(this.form.value);
+    this.router.navigate(['/results'], { state: { prefs: this.form.value } });
   }
 }
