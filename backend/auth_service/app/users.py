@@ -30,9 +30,10 @@ def get_user_by_username(username: str):
     session = SessionLocal()
     try:
         user = session.query(UserTable).filter(UserTable.username == username).one()
-        return User(
+        return UserInDB(
             username=user.username,
             full_name=user.full_name,
+            hashed_password=user.hashed_password,
         )
     except NoResultFound:
         return None

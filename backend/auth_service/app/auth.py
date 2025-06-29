@@ -62,15 +62,3 @@ def verify_token(token: str):
         return {"valid": True, "username": payload.get("sub")}
     except Exception:
         return {"valid": False}
-
-
-@router.post("/register")
-def register_user(user: UserCreate):
-    if user.username in fake_users_db:
-        raise HTTPException(status_code=400, detail="Username already exists")
-
-    hashed_password = get_password_hash(user.password)
-    user_in_db = UserInDB(username=user.username, hashed_password=hashed_password)
-    fake_users_db[user.username] = user_in_db
-
-    return {"message": "User registered", "user": {"username": user.username}}
