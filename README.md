@@ -4,14 +4,24 @@
 
 For some services, you need to set up environment variables. Copy the `.env.example` file to `.env` and fill in the required values.
 
+- `GENAI_API_KEY`: Your Google GenAI API key for the Travel Service.
+
 ## 2. Running the Application
-To run the application, use Docker Compose. Make sure you have Docker installed and running, then execute the following command in the root directory of the project:
+
+To run the application locally, use Docker Compose. Install docker, then execute the following command in the root directory of the project:
 
 ```bash
 docker-compose up -d
 ```
 
 ## Microservices
+
+Both the Auth and Travel service are built with FastAPI and so you can find documentation and api testing at their respective `/docs` endpoints.
+
+### Microservice: Auth Service
+
+This microservice provides authentication functionalities using FastAPI. It uses PostgresSQL for storing user data and JWT for token-based authentication.
+When running docker compose, the service is available at http://localhost:8001.
 
 ### Microservice: Travel Service
 
