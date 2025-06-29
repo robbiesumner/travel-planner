@@ -1,3 +1,4 @@
 fastapi[standard]
 google-genai
 pymongo
+pydantic-settings

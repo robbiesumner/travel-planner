@@ -18,6 +18,8 @@ services:
     environment:
       - MONGODB_URI=mongodb://mongo_db:27017/travel_planner
       - MONGODB_DB=travel_planner
+      - AUTH_SERVICE_INTERNAL_URL=http://auth_service:80/
+      - AUTH_SERVICE_EXTERNAL_URL=http://localhost:8001/
     env_file:
       - .env
     depends_on:

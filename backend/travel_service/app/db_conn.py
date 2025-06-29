@@ -1,18 +1,14 @@
-import os
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 
-MONGODB_URI = os.getenv("MONGODB_URI")
-DB_NAME = os.getenv("MONGODB_DB")
+from app.config import settings
 
-client = MongoClient(MONGODB_URI)
-db = client[DB_NAME]
-
-# Helper functions for trips
+client = MongoClient(settings.MONGODB_URI)
+db = client[settings.DB_NAME]
 
 
-def get_all_trips():
-    return list(db.trips.find())
+def get_all_trips(username: str):
+    return list(db.trips.find({"username": username}))
 
 
 def get_trip_by_id(trip_id: str):

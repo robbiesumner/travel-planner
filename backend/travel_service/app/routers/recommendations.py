@@ -6,12 +6,13 @@ import os
 import json
 
 from app.models import TravelConfig
+from app.config import settings
 
 
 router = APIRouter()
 
 
-genai_client = genai.Client(api_key=os.getenv("GENAI_API_KEY"))
+genai_client = genai.Client(api_key=settings.GENAI_API_KEY)
 
 
 def clean_genai_json_response(text: str) -> str:
