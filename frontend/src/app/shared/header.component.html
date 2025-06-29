@@ -21,10 +21,17 @@
     </li>
     <li>
       <a
+        routerLink="/results"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >Ergebnisse</a>
+    </li>
+    <li>
+      <a
         routerLink="/history"
         routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: true }"
-      >History</a>
+      >Verlauf</a>
     </li>
     <li>
       <a
