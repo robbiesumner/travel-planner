@@ -75,6 +75,6 @@ export class PreferencesComponent {
   }
 
   onNext() {
-    this.router.navigate(['/results'], { state: { preferences: this.form.value } });
+    this.router.navigate(['/results'], { state: { prefs: this.form.value } });
   }
 }

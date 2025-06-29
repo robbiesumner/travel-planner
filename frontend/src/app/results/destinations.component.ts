@@ -22,8 +22,8 @@ export class DestinationsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const statePrefs = this.router.getCurrentNavigation()?.extras.state as { preferences?: Preferences };
-    const prefs: Preferences | undefined = statePrefs?.preferences || this.route.snapshot.queryParams as any;
+    const statePrefs = this.router.getCurrentNavigation()?.extras.state as { prefs?: Preferences };
+    const prefs: Preferences | undefined = statePrefs?.prefs || (this.route.snapshot.queryParams as any);
     if (prefs) {
       this.suggestionService.getSuggestions(prefs).subscribe(data => this.destinations = data);
     }
