@@ -42,6 +42,31 @@ button:focus,
   justify-content: space-between;
 }
 
+.input-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.budget-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.suffix {
+  color: $color-secondary;
+}
+
+.error {
+  color: red;
+  font-size: 0.8rem;
+}
+
+.required {
+  color: red;
+}
+
 @media (max-width: 768px) {
   .preferences-grid {
     grid-template-columns: 1fr;

@@ -68,6 +68,64 @@
     </div>
   </div>
 
+  <div class="input-section">
+    <label for="residency">Wohnort <span class="required">*</span></label>
+    <input id="residency" type="text" formControlName="residency" list="city-list" />
+    <datalist id="city-list">
+      <option value="Berlin"></option>
+      <option value="Hamburg"></option>
+      <option value="München"></option>
+      <option value="Köln"></option>
+      <option value="Stuttgart"></option>
+    </datalist>
+    <div class="error" *ngIf="form.get('residency')?.touched && form.get('residency')?.errors?.['required']">
+      Residency erforderlich
+    </div>
+  </div>
+
+  <div class="input-section">
+    <label for="budget">Budget</label>
+    <div class="budget-wrapper">
+      <input id="budget" type="number" formControlName="budget" min="0" />
+      <span class="suffix">€</span>
+    </div>
+  </div>
+
+  <div class="input-section">
+    <label for="tripType">Reiseart</label>
+    <select id="tripType" formControlName="tripType">
+      <option value="">-- Bitte wählen --</option>
+      <option value="mountains">Mountains</option>
+      <option value="beach">Beach</option>
+      <option value="city">City</option>
+    </select>
+  </div>
+
+  <div class="slider-section">
+    <label>Dauer (Tage)</label>
+    <div class="slider-wrapper">
+      <span>1</span>
+      <input type="range" formControlName="durationDays" min="1" max="30" />
+      <span>30</span>
+    </div>
+  </div>
+
+  <div class="slider-section">
+    <label>Temperatur (°C)</label>
+    <div class="slider-wrapper">
+      <span>-10</span>
+      <input type="range" formControlName="temperature" min="-10" max="40" list="temp-list" />
+      <datalist id="temp-list">
+        <option value="0"></option>
+        <option value="10"></option>
+        <option value="20"></option>
+        <option value="30"></option>
+        <option value="40"></option>
+      </datalist>
+      <span>40</span>
+    </div>
+  </div>
+
   <div class="nav-buttons">
     <button
       routerLink="/"
