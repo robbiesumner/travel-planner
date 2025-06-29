@@ -1,0 +1,14 @@
+<div class="itinerary">
+  <div class="day-card" *ngFor="let d of itinerary">
+    <h3>Tag {{ d.day }}</h3>
+    <ul>
+      <li *ngFor="let act of d.activities">{{ act }}</li>
+    </ul>
+    <div class="tips" *ngIf="d.tips?.length">
+      <strong>Tipps:</strong>
+      <ul>
+        <li *ngFor="let tip of d.tips">{{ tip }}</li>
+      </ul>
+    </div>
+  </div>
+</div>
