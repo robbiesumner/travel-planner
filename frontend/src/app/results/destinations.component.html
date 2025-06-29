@@ -1,0 +1,11 @@
+<div class="grid">
+  <div class="card" *ngFor="let d of destinations" (click)="openDetails(d.id)" tabindex="0">
+    <img [src]="d.imageUrl" [alt]="d.name" />
+    <div class="content">
+      <h3>{{ d.name }}</h3>
+    </div>
+    <div class="footer">
+      Score: {{ d.score }}
+    </div>
+  </div>
+</div>
