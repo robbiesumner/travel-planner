@@ -55,7 +55,7 @@ def get_me(token: str = Depends(oauth2_scheme)):
 
 
 # Für andere Microservices: Token-Verifizierung
-@router.post("/verify")
+@router.get("/verify")
 def verify_token(token: str):
     try:
         payload = decode_access_token(token)
