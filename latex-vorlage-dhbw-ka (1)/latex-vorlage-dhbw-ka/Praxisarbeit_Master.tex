@@ -1,0 +1,38 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 2020-06-20
+%% Descr:       Gekürzte Hauptdatei für Projekt-/Bachelorarbeit
+%% Author:      Basierend auf DHBW-Vorlage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{config}
+\input{text/template/preamble}
+
+\begin{document}
+
+% Titelseite
+\thispagestyle{empty}
+\input{text/template/titlepage}
+\newpage
+
+% Verfasser:in etc.
+\input{text/template/declaration}
+\newpage
+
+% Inhaltsverzeichnis
+\pagenumbering{Roman}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyfoot[R]{\footer}
+\tableofcontents
+\newpage
+
+% Arabische Seitenzahlen ab Kapitel 1
+\pagenumbering{arabic}
+
+% Kapitel 1 & 2
+\input{text/chapter1}
+\newpage
+\input{text/chapter2}
+
+\end{document}

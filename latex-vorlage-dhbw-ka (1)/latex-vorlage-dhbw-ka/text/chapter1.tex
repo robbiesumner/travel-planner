@@ -1,0 +1,67 @@
+\section{Technische Dokumentation}
+
+\subsection{Einleitung}
+
+Die generelle Zielsetzung sah die Erstellung eines Tools vor, das auf Grundlage von Benutzerpräferenzen und historischen Daten eines Nutzers personalisierte Reisevorschläge erstellt. Dabei solle es zur Kalkulierung Echtzeitinformationen zu Flug und Zugverbindungen oder Events berücksichtigen. 
+Die technischen Anforderungen dabei bestanden in der Nutzung von APIs, einem Backend für Benutzer- und Datenmanagement, sowie einem Data-Science Algorithmus für die Personalisierung und Empfehlung.  
+Zusätzlich sollte – nach Möglichkeit – das Tool durch eine anschließende Datenanalyse, bzw. eine Datenvisualisierung erweitert werden.  
+Es ist jedoch anzumerken, dass im Laufe der Entwicklung die Anforderungen reduziert wurden mit dem Fokus auf die Struktur und ein erkennbares funktionierendes System.
+
+\subsection{Architekturübersicht}
+
+Im Projekt wurde entschieden, eine Microservice-basierte Webanwendung zu konzipieren. Die Gesamtarchitektur gliedert sich in ein Frontend, mehrere spezialisierte Backend-Services sowie eine Datenbank. Zusätzlich werden externe APIs zur Datenanreicherung eingebunden.  
+Das Frontend übernimmt die Registrierung neuer Nutzer, die Verwaltung von Nutzerprofilen sowie die Abfrage personalisierter Reiseempfehlungen. Es wurde mit dem Angular-Framework als Single-Page-Application (SPA) realisiert.  
+
+Das Backend ist in zwei separate Microservices unterteilt:
+\begin{itemize}
+  \item \textbf{auth\_service}: übernimmt die Authentifizierung und Verwaltung von Nutzerkonten und Präferenzen
+  \item \textbf{travel\_service}: verarbeitet Nutzeranfragen, verwaltet geplante Reisen und generiert personalisierte Empfehlungen
+\end{itemize}
+
+Beide Microservices greifen auf eine MongoDB-Datenbank zu, in der Nutzerstammdaten sowie individuelle Anfragen und Reiseinformationen gespeichert werden.  
+Abschließend wurden sämtliche Anwendungen containerisiert und über ein Kubernetes-Cluster orchestriert. Dies ermöglicht eine standardisierte, skalierbare und portable Bereitstellung der Anwendung.
+
+\subsection{Konzepte aus der Vorlesung}
+
+\subsubsection{Webentwicklung}
+
+\paragraph{Single-Page Application (SPA) mit Angular}  
+Das Frontend wurde mit dem Angular-Framework umgesetzt…  
+
+Verwendete Komponenten:
+\begin{itemize}
+  \item HTML- und CSS-Grundlagen für strukturiertes Layout und Design
+  \item Angular-Komponentenarchitektur
+  \item Routing
+\end{itemize}
+
+\paragraph{REST-Kommunikation}  
+Muss noch getan werden
+
+\subsubsection{Verteilte Systeme}
+
+\paragraph{Microservice-Architektur}  
+Die Anwendung wurde als verteiltes System mit zwei separaten Microservices umgesetzt:
+\begin{itemize}
+  \item auth\_service: Verwaltung von Nutzern und Login
+  \item travel\_service: Abfrage und Generierung von Reiseempfehlungen
+\end{itemize}
+
+Verwendet:
+\begin{itemize}
+  \item Auf blöd, die Struktur verteilter Systeme
+\end{itemize}
+
+\paragraph{Containerisierung mit Docker}  
+Verwendet:
+\begin{itemize}
+  \item Containerisierung und Virtualisierung
+  \item Aufbau und Funktion eines Dockerfile
+  \item Image-Build, Tagging und Deployment mit Docker
+\end{itemize}
+
+\paragraph{Kubernetes Cluster}
+
+\subsection{Technische Umsetzung}
+
+\subsection{Kompromisse und Abweichungen}
