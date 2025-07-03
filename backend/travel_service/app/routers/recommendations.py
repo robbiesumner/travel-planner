@@ -2,11 +2,11 @@ from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 from google import genai
 
-import os
 import json
 
-from app.models import TravelConfig
+from app.models import DestinationPreference, TravelConfig, TripCreate
 from app.config import settings
+from app.db_conn import log_request
 
 
 router = APIRouter()
@@ -27,7 +27,7 @@ def clean_genai_json_response(text: str) -> str:
 
 
 @router.post("/destinations/")
-def destinations(config: TravelConfig):
+def destinations(config: DestinationPreference):
     prompt = f"""
         Recommend travel destinations based on the following configuration. The configuration includes:
         - Residency: The user's country of residence
@@ -70,8 +70,9 @@ def destinations(config: TravelConfig):
         )
 
 
-@router.post("/trip/")
-def trip(config: TravelConfig, destination: str):
+@router.post("/trip/", response_model=TripCreate)
+def trip(config: TravelConfig):
+    log_request(config.model_dump())
     prompt = f"""
         Plan a complete trip based on the following configuration. The configuration includes:
         - Residency: The user's country of residence
@@ -96,7 +97,7 @@ def trip(config: TravelConfig, destination: str):
         }}
         
         Here is the destintation and configuration:
-        Destination: {destination}
+        Destination: {config.destination}
         Configurations: {config.model_dump_json(indent=2)}
     """
     response = genai_client.models.generate_content(
@@ -107,7 +108,8 @@ def trip(config: TravelConfig, destination: str):
         content = clean_genai_json_response(response.text)
         try:
             trip_plan = json.loads(content)
-            return JSONResponse(status_code=200, content=trip_plan)
+            trip_plan["destination"] = config.destination
+            return trip_plan
         except Exception:
             return JSONResponse(
                 status_code=500,

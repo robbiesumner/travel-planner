@@ -1,0 +1,104 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 2020-06-20
+%% Descr:       Formale Einstellungen für die Praxisarbeit
+%% Author:      Vorlage erstellt von Daniel Spitzer an der DHBW Lörrach 
+%% Angepasst:   Katja Wengler, ZWI, DHBW Karlsruhe
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% !TEX root = ../../Praxisarbeit_Master.tex
+
+\documentclass[a4paper,12pt]{article}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\usepackage{csquotes}
+\setdefaultlanguage[spelling=new, babelshorthands=true]{german}
+
+% Seitenränder
+\usepackage[left=3.5cm, right=2.5cm, head=1.25cm, bottom=2cm, foot=1.25cm, includefoot]{geometry}
+
+% Abkürzungsverzeichnis
+\usepackage[printonlyused]{acronym}
+
+% Gut formatierte Tabellen
+\usepackage{tabulary}
+
+% Positioniert Tabellen und Abbildungen
+\usepackage{float}
+
+% Fügt Abschnitte wie den Anhang oder die Kurzfassung dem Inhaltsverzeichnis hinzu
+\usepackage{tocbibind}
+
+% Ermöglicht Abbildungen in LaTeX
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+
+% Definiert die Farben für Tabellen im DHBW-Style
+\usepackage[table]{xcolor}
+\definecolor{tableHeading}{gray}{0.672}
+\definecolor{tableOdd}{gray}{0.945}
+\definecolor{tableEven}{gray}{0.859}
+\arrayrulecolor{white}
+
+% Schriftart Carlito. Sie ist fast identisch mit Calibri.
+% Calibri ist auf Linux und MacOS nicht verfügbar. 
+\usepackage{carlito}
+\setmainfont{carlito}
+
+% Fußzeile und Kopfzeile
+\usepackage{fancyhdr}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.5pt}
+\def \footer{
+\begin{center}
+\hfill
+\fontsize{\footerFontSize}{\footerFontSize}\selectfont%\thesisFooterTitle
+\hfill
+\thepage
+\end{center}
+}
+
+% Positioniert die Fußnoten fest am unteren Ende der Seite
+\usepackage[bottom]{footmisc}
+
+% Zeilenabstand: 1.5
+\usepackage{setspace}
+\setstretch{1.5}
+
+% Literaturverzeichnis
+\usepackage[natbib=true, backend=biber, style=authoryear, dashed=false]{biblatex}
+\DeclareBibliographyAlias{interview}{misc}
+\addbibresource{text/bibliography.bib}
+
+% Das Paket hyperref muss als letztes Paket geladen werden. Das Paket setzt Links im PDF-Dokument.
+\usepackage[hidelinks, unicode]{hyperref}
+\hypersetup{pdftitle = {\thesisTitle}, pdfauthor = {\name}}
+
+% Normale Schriftart für URLs
+\renewcommand{\UrlFont}{}
+
+% Variable für das Speichern der Seitenzahl (römisch -> arabisch -> römisch)
+\newcounter{pageNumber}
+
+% Nummerierung: 2.1, 2.2 usw.
+\renewcommand{\labelenumii}{\theenumii}
+\renewcommand{\theenumii}{\theenumi.\arabic{enumii}.}
+
+% Bei Bedarf können die Überschriften geändert werden
+\def \declarationHeading{Selbstständigkeitserklärung}
+%\def \thesisSizeHeading{Hinweis zum Umfang der Arbeit}
+%\def \releaseHeading{Freigabe der Arbeit}
+\def \blockingHeading{Sperrvermerk}
+\def \abstractHeading{Kurzfassung}
+\def \appendixHeading{Anhang}
+\def \referenceHeading{Quellenverzeichnis}
+\def \acronymHeading{Abkürzungsverzeichnis}
+
+% Befehl für ein einleitendes Zitat
+\newcommand{\epigraph}[2]{
+    \begin{quote}\begin{quote}
+        \begin{center}
+            \textit{#1}
+        \end{center}
+        \hfill #2
+    \end{quote}\end{quote}
+}
