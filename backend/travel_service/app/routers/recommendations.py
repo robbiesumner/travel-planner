@@ -6,6 +6,7 @@ import json
 
 from app.models import DestinationPreference, TravelConfig, TripCreate
 from app.config import settings
+from app.db_conn import log_request
 
 
 router = APIRouter()
@@ -71,6 +72,7 @@ def destinations(config: DestinationPreference):
 
 @router.post("/trip/", response_model=TripCreate)
 def trip(config: TravelConfig):
+    log_request(config.model_dump())
     prompt = f"""
         Plan a complete trip based on the following configuration. The configuration includes:
         - Residency: The user's country of residence

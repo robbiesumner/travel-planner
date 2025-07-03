@@ -4,7 +4,7 @@ from bson.objectid import ObjectId
 from app.config import settings
 
 client = MongoClient(settings.MONGODB_URI)
-db = client[settings.DB_NAME]
+db = client[settings.MONGODB_DB]
 
 
 def get_all_trips(username: str):
@@ -18,3 +18,8 @@ def get_trip_by_id(trip_id: str):
 def create_trip(trip_data: dict):
     result = db.trips.insert_one(trip_data)
     return str(result.inserted_id)
+
+
+def log_request(data: dict):
+    """Log a search request to the search_logs collection."""
+    db.search_logs.insert_one(data)
