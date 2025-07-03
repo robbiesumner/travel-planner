@@ -35,6 +35,23 @@ export const routes: Routes = [
     path: 'success',
     loadComponent: () =>
       import('./features/auth/success/success').then(m => m.SuccessComponent)
+  },
+  {
+    path: 'recommendations',
+    loadComponent: () =>
+      import('./recommendations/recommendations').then(m => m.RecommendationsComponent)
+  },
+  {
+    path: 'recommendation-results',
+    loadComponent: () =>
+      import('./recommendation-results/recommendation-results').then(m => m.RecommendationResultsComponent)
+  },
+  {
+    path: 'trip-details',
+    loadComponent: () =>
+      import('./trip-details/trip-details').then(m => m.TripDetailsComponent)
   }
+  
+  
 ];
 

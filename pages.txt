@@ -1,0 +1,14 @@
+Recommendations:
+    Form mit :
+        residency
+        cost
+        duration_days
+        destination type
+        temperature
+
+Results 1:
+    name 
+    description
+
+Result 2:
+    
