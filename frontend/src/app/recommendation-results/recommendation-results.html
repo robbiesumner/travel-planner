@@ -1,12 +1,15 @@
-<mat-card *ngFor="let destination of destinations" style="margin-bottom: 1rem;">
-    <mat-card-title>{{ destination.name }}</mat-card-title>
-    <mat-card-content>
-      <p>{{ destination.description }}</p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button color="primary" (click)="getDetails(destination)">
-        Get Trip Details
-      </button>
-    </mat-card-actions>
-  </mat-card>
-  
+<mat-card *ngFor="let destination of destinations" style="margin-bottom: 1rem">
+  <mat-card-title>{{ destination.name }}</mat-card-title>
+  <mat-card-content>
+    <p>{{ destination.description }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="getDetails(destination.name)"
+    >
+      Get Trip Details
+    </button>
+  </mat-card-actions>
+</mat-card>

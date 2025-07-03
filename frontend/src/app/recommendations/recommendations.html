@@ -1,45 +1,64 @@
 <mat-card>
-    <mat-card-header>
-      <h2>Get Travel Recommendations</h2>
-    </mat-card-header>
-    <mat-card-content>
-      <form #recommendForm="ngForm" (ngSubmit)="submit()">
-        <mat-form-field appearance="outline">
-          <mat-label>Residency</mat-label>
-          <input matInput [(ngModel)]="residency" name="residency" required />
-        </mat-form-field>
-  
-        <mat-form-field appearance="outline">
-          <mat-label>Maximum Cost (€)</mat-label>
-          <input matInput type="number" [(ngModel)]="cost" name="cost" required />
-        </mat-form-field>
-  
-        <mat-form-field appearance="outline">
-          <mat-label>Duration (days)</mat-label>
-          <input matInput type="number" [(ngModel)]="durationDays" name="durationDays" required />
-        </mat-form-field>
-  
-        <mat-form-field appearance="outline">
-          <mat-label>Destination Type</mat-label>
-          <mat-select [(ngModel)]="destinationType" name="destinationType" required>
-            <mat-option value="beach">Beach</mat-option>
-            <mat-option value="city">City</mat-option>
-            <mat-option value="nature">Nature</mat-option>
-            <mat-option value="mountains">Mountains</mat-option>
-          </mat-select>
-        </mat-form-field>
-  
-        <mat-form-field appearance="outline">
-          <mat-label>Preferred Temperature (°C)</mat-label>
-          <input matInput type="number" [(ngModel)]="temperature" name="temperature" required />
-        </mat-form-field>
-  
-        <div style="text-align: center; margin-top: 1.5rem;">
-          <button mat-raised-button color="primary" [disabled]="!recommendForm.valid">
-            Get Recommendation
-          </button>
-        </div>
-      </form>
-    </mat-card-content>
-  </mat-card>
-  
+  <mat-card-header>
+    <h2>Get Travel Recommendations</h2>
+  </mat-card-header>
+  <mat-card-content>
+    <form #recommendForm="ngForm" (ngSubmit)="submit()">
+      <mat-form-field appearance="outline">
+        <mat-label>Residency</mat-label>
+        <input matInput [(ngModel)]="residency" name="residency" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Maximum Cost (€)</mat-label>
+        <input matInput type="number" [(ngModel)]="cost" name="cost" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Duration (days)</mat-label>
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="durationDays"
+          name="durationDays"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Destination Type</mat-label>
+        <mat-select
+          [(ngModel)]="destinationType"
+          name="destinationType"
+          required
+        >
+          <mat-option value="beach">Beach</mat-option>
+          <mat-option value="city">City</mat-option>
+          <mat-option value="nature">Nature</mat-option>
+          <mat-option value="mountains">Mountains</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Preferred Temperature (°C)</mat-label>
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="temperature"
+          name="temperature"
+          required
+        />
+      </mat-form-field>
+
+      <div style="text-align: center; margin-top: 1.5rem">
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="!recommendForm.valid"
+        >
+          Get Recommendation
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

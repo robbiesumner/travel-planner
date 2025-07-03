@@ -1,12 +1,17 @@
 import { Routes } from '@angular/router';
-import { LandingPageComponent } from './landing/landing-page.component';
-import { PreferencesComponent } from './preferences/preferences.component';
 import { RegisterComponent } from './features/auth/register/register';
 import { LoginComponent } from './features/auth/login/login';
+import { RecommendationsComponent } from './recommendations/recommendations';
 
 export const routes: Routes = [
-  { path: '', component: LandingPageComponent },
-  { path: 'preferences', component: PreferencesComponent },
+  // if is logged in, redirect to recommendations, otherwise to login page
+  {
+    path: '',
+    component:
+      localStorage.getItem('isLoggedIn') === 'true'
+        ? RecommendationsComponent
+        : LoginComponent,
+  },
 
   { path: '', component: RegisterComponent },
   { path: 'register', component: RegisterComponent },
@@ -15,43 +20,27 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
 
   {
-    path: 'results',
-    loadComponent: () =>
-      import('./results/destinations.component').then(m => m.DestinationsComponent)
-  },
-  {
-    path: 'results/:id',
-    loadComponent: () =>
-      import('./results/detail/destination-detail.component').then(
-        m => m.DestinationDetailComponent
-      )
-  },
-  {
-    path: 'history',
-    loadComponent: () =>
-      import('./history/history.component').then(m => m.HistoryComponent)
-  },
-  {
     path: 'success',
     loadComponent: () =>
-      import('./features/auth/success/success').then(m => m.SuccessComponent)
+      import('./features/auth/success/success').then((m) => m.SuccessComponent),
   },
   {
     path: 'recommendations',
     loadComponent: () =>
-      import('./recommendations/recommendations').then(m => m.RecommendationsComponent)
+      import('./recommendations/recommendations').then(
+        (m) => m.RecommendationsComponent
+      ),
   },
   {
     path: 'recommendation-results',
     loadComponent: () =>
-      import('./recommendation-results/recommendation-results').then(m => m.RecommendationResultsComponent)
+      import('./recommendation-results/recommendation-results').then(
+        (m) => m.RecommendationResultsComponent
+      ),
   },
   {
     path: 'trip-details',
     loadComponent: () =>
-      import('./trip-details/trip-details').then(m => m.TripDetailsComponent)
-  }
-  
-  
+      import('./trip-details/trip-details').then((m) => m.TripDetailsComponent),
+  },
 ];
-

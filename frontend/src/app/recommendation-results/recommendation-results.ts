@@ -1,46 +1,42 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { SuggestionService } from '../core/services/suggestion.service';
+import { Destinations } from '../core/models/destination';
+import { DestinationPreferences } from '../core/models/travelConfig';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recommendation-results',
   standalone: true,
-  imports: [
-    CommonModule,
-    MatCardModule,
-    MatButtonModule
-  ],
+  imports: [CommonModule, MatCardModule, MatButtonModule],
   templateUrl: './recommendation-results.html',
   styleUrls: ['./recommendation-results.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RecommendationResultsComponent {
-  destinations = [
-    {
-      name: 'Rügen Island, Germany',
-      description: 'Germany\'s largest island in the Baltic Sea, Rügen offers wide sandy beaches backed by dramatic chalk cliffs...'
-    },
-    {
-      name: 'Sopot, Poland',
-      description: 'A charming seaside resort town on the Polish Baltic coast, Sopot is renowned for its long wooden pier...'
-    },
-    {
-      name: 'Skåne Coast, Sweden',
-      description: 'The southern coast of Sweden, particularly the Skåne region, features long, pristine sandy beaches...'
-    },
-    {
-      name: 'Bornholm, Denmark',
-      description: 'This Danish island in the Baltic Sea is known for its rugged coastline, charming fishing villages...'
-    },
-    {
-      name: 'Saaremaa Island, Estonia',
-      description: 'Estonia\'s largest island, Saaremaa, boasts a rugged coastline with sandy and stony beaches...'
-    }
-  ];
+  private suggestionService = inject(SuggestionService);
+  destinations: Destinations = history.state.recommendations || [];
+  private config: DestinationPreferences = history.state?.config || {};
 
-  getDetails(destination: any): void {
-    console.log('Trip details requested for:', destination.name);
-    // Optional: navigate to a detail view or open a modal
+  constructor(private router: Router) {}
+
+  getDetails(destination: string): void {
+    this.suggestionService
+      .getTrip({
+        destination: destination,
+        ...this.config,
+      })
+      .subscribe({
+        next: (trip) => {
+          this.router.navigate(['/trip-details'], {
+            state: { trip: trip },
+          });
+        },
+        error: (err) => {
+          console.error('Error fetching trip details:', err);
+        },
+      });
   }
 }

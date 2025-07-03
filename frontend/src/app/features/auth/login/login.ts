@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -18,11 +19,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatInputModule,
     MatButtonModule,
     MatFormFieldModule,
-    RouterModule
+    RouterModule,
   ],
   templateUrl: './login.html',
   styleUrls: ['./login.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [AuthService],
 })
 export class LoginComponent {
   username = '';
@@ -30,17 +32,24 @@ export class LoginComponent {
   loginValid = true;
   year = new Date().getFullYear();
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   login(): void {
-    if (this.username === 'admin' && this.password === 'password') {
-      this.loginValid = true;
-      localStorage.setItem('isLoggedIn', 'true');
-      this.router.navigate(['/preferences']);
-    } else {
-      this.loginValid = false;
-    }
+    this.authService.login(this.username, this.password).subscribe({
+      next: (response: { access_token: string }) => {
+        const token = response.access_token;
+        if (token) {
+          this.loginValid = true;
+          localStorage.setItem('jwt', token);
+          localStorage.setItem('isLoggedIn', 'true');
+          this.router.navigate(['/recommendations']);
+        } else {
+          this.loginValid = false;
+        }
+      },
+      error: () => {
+        this.loginValid = false;
+      },
+    });
   }
 }
-
-
