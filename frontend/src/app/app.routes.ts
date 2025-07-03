@@ -1,10 +1,18 @@
 import { Routes } from '@angular/router';
 import { LandingPageComponent } from './landing/landing-page.component';
 import { PreferencesComponent } from './preferences/preferences.component';
+import { RegisterComponent } from './features/auth/register/register';
+import { LoginComponent } from './features/auth/login/login';
 
 export const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'preferences', component: PreferencesComponent },
+
+  { path: '', component: RegisterComponent },
+  { path: 'register', component: RegisterComponent },
+
+  { path: '', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
 
   {
     path: 'results',
@@ -22,16 +30,6 @@ export const routes: Routes = [
     path: 'history',
     loadComponent: () =>
       import('./history/history.component').then(m => m.HistoryComponent)
-  },
-  {
-    path: 'login',
-    loadComponent: () =>
-      import('./features/auth/login/login').then(m => m.LoginComponent)
-  },
-  {
-    path: 'register',
-    loadComponent: () =>
-      import('./features/auth/register/register').then(m => m.RegisterComponent)
   },
   {
     path: 'success',

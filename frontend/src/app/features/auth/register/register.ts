@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
@@ -16,7 +17,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatCardModule,
     MatInputModule,
     MatButtonModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    RouterModule
   ],
   templateUrl: './register.html',
   styleUrls: ['./register.scss'],
