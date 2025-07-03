@@ -5,6 +5,7 @@ import { PreferencesComponent } from './preferences/preferences.component';
 export const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'preferences', component: PreferencesComponent },
+
   {
     path: 'results',
     loadComponent: () =>
@@ -21,5 +22,21 @@ export const routes: Routes = [
     path: 'history',
     loadComponent: () =>
       import('./history/history.component').then(m => m.HistoryComponent)
+  },
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./features/auth/login/login').then(m => m.LoginComponent)
+  },
+  {
+    path: 'register',
+    loadComponent: () =>
+      import('./features/auth/register/register').then(m => m.RegisterComponent)
+  },
+  {
+    path: 'success',
+    loadComponent: () =>
+      import('./features/auth/success/success').then(m => m.SuccessComponent)
   }
 ];
+
