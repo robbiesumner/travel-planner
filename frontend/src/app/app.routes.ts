@@ -42,7 +42,18 @@ export const routes: Routes = [
     path: 'recommendations',
     loadComponent: () =>
       import('./recommendations/recommendations').then(m => m.RecommendationsComponent)
+  },
+  {
+    path: 'recommendation-results',
+    loadComponent: () =>
+      import('./recommendation-results/recommendation-results').then(m => m.RecommendationResultsComponent)
+  },
+  {
+    path: 'trip-details',
+    loadComponent: () =>
+      import('./trip-details/trip-details').then(m => m.TripDetailsComponent)
   }
+  
   
 ];
 

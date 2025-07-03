@@ -1,0 +1,24 @@
+<mat-card>
+    <mat-card-header>
+      <h2>Trip Plan: {{ destination }}</h2>
+    </mat-card-header>
+  
+    <mat-card-content>
+      <div *ngFor="let day of itinerary">
+        <h3>Day {{ day.day }}</h3>
+        <ul>
+          <li *ngFor="let activity of day.activities">{{ activity }}</li>
+        </ul>
+        <p><strong>Notes:</strong> {{ day.notes }}</p>
+        <mat-divider class="divider"></mat-divider>
+      </div>
+  
+      <div *ngIf="tips?.length">
+        <h3>Travel Tips</h3>
+        <ul>
+          <li *ngFor="let tip of tips">{{ tip }}</li>
+        </ul>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  
