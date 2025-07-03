@@ -4,7 +4,7 @@ from pydantic_settings import BaseSettings
 class Settings(BaseSettings):
     # MongoDB connection string
     MONGODB_URI: str = "mongodb://localhost:27017"
-    DB_NAME: str = "trips"
+    MONGODB_DB: str = "travel_service"
 
     # GenAI
     GENAI_API_KEY: str = "your_genai_api_key_here"

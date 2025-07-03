@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Monitoring Dashboard</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 2em;
+      }
+      h1 {
+        color: #2c3e50;
+      }
+      table {
+        border-collapse: collapse;
+        width: 45%;
+        margin-bottom: 2em;
+      }
+      th,
+      td {
+        border: 1px solid #ccc;
+        padding: 0.5em 1em;
+      }
+      th {
+        background: #f4f4f4;
+      }
+      .container {
+        display: flex;
+        gap: 2em;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Monitoring Dashboard</h1>
+    <div class="container">
+      <div>
+        <h2>Most Searched Destinations</h2>
+        <table>
+          <tr>
+            <th>Destination</th>
+            <th>Count</th>
+          </tr>
+          {% for item in destinations %}
+          <tr>
+            <td>{{ item._id }}</td>
+            <td>{{ item.count }}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+    <div class="container">
+      <div>
+        <h2>Most Popular Trip Types</h2>
+        <table>
+          <tr>
+            <th>Trip Type</th>
+            <th>Count</th>
+          </tr>
+          {% for item in trip_types %}
+          <tr>
+            <td>{{ item._id }}</td>
+            <td>{{ item.count }}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+  </body>
+</html>

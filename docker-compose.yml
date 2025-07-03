@@ -25,6 +25,16 @@ services:
     depends_on:
       - mongo_db
       
+  monitoring_service:
+    build: ./backend/monitoring_service
+    ports:
+      - 8080:80
+    environment:
+      - MONGODB_URI=mongodb://mongo_db:27017/travel_planner
+      - MONGODB_DB=travel_planner
+    depends_on:
+      - mongo_db
+      
   postgres:
     image: postgres:latest
     environment:
@@ -38,6 +48,8 @@ services:
 
   mongo_db:
     image: mongo:latest
+    ports:
+      - 27017:27017
     volumes:
       - mongo_data:/data/db
 
