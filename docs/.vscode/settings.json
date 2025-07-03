@@ -1,0 +1,35 @@
+{
+  "latex-workshop.latex.rootFile.indicator": "\\begin{document}",
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "LuaTex/Biber",
+      "tools": [
+        "lualatex",
+        "biber",
+        "lualatex",
+        "lualatex",
+      ]
+    }
+  ],
+  "latex-workshop.latex.tools": [
+    {
+      "name": "biber",
+      "command": "biber",
+      "args": [
+        "%DOCFILE%"
+      ]
+    },
+    {
+      "name": "lualatex",
+      "command": "lualatex",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "%DOC%"
+      ]
+    }
+  ],
+  "latex-workshop.latex.autoBuild.run": "onSave",
+  "editor.wordWrap": "on",
+}

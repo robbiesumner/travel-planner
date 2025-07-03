@@ -8,13 +8,13 @@
 % Hier müssen die Variablen zur eignenen Arbeit angepasst werden
 
 % Der Titel der Arbeit, der auf dem Deckblatt angezeigt wird
-\def \thesisTitle {Der Titel einer wissenschaftlichen Arbeit kann auch sehr lang werden, aber länger ist nicht unbedingt besser}
+\def \thesisTitle {Dokumentation Travel Planner}
 
 % Der Titel der Arbeit, der in der Fußzeile angezeigt wird
-\def \thesisFooterTitle {Der Titel einer wissenschaftlichen Arbeit kann auch sehr lang werden, aber länger ist nicht unbedingt besser}
+\def \thesisFooterTitle {}
 
 % Art der Arbeit
-\def \thesisType {1. Projektarbeit}
+\def \thesisType {Prüfungsleistung}
 
 % Bildungsabschluss
 \def \degree {Bachelor of Science (B. Sc.)}
@@ -23,25 +23,13 @@
 \def \submissionDate {31. August 2020}
 
 % Studiengang
-\def \courseOfStudies {Wirtschaftsinformatik}
+\def \courseOfStudies {Data Science und Künstliche Intelligenz}
 
 % Kurs
-\def \course {WWI19BX}
+\def \course {WDS24B1}
 
 % Name des Autors der Arbeit
-\def \name {Max Mustermann}
-
-% Name der Ausbildungsfirma
-\def \company {Musterfrau AG}
-
-% Ort, an dem Ausbildungsfirma ansässig ist
-\def \companyLocation {Karlsruhe}
-
-% Betreuer der Ausbildungsfirma
-\def \corporateAdvisor {Leonie Musterfrau}
-
-% Wissenschaftlicher Betreuer
-\def \universityAdvisor {Prof. Dr. Tina Mustermann}
+\def \name {Celine Lagler, Dixon John, Robbie Sumner, Nick Heinemann, Nicolas Bornhöfft}
 
 % Ort und Datum für die Ehrenwörtliche Erklärung
 \def \declarationHeading {Selbstständigkeitserklärung}
@@ -50,7 +38,7 @@
 
 % Ort und Datum für die Freigabe der Arbeit
 \def \releaseLocation {Karlsruhe}
-\def \releaseDate {31. August 2020}
+\def \releaseDate {03. Juli 2025}
 
 % Name der Bilddatei für das Firmenlogo. Die Datei muss im Ordner images sein.
 % Erlaubt sind u.a. folgende Formate: PDF, PNG, JPEG
@@ -60,15 +48,17 @@
 \def \titleFontSize {18}		% Schriftgröße des Titels auf dem Deckblatt
 \def \footerFontSize {10}		% Schriftgröße in der Fußzeile
 
+\newif\ifseminararbeit
 % Wenn es sich um eine Seminararbeit handelt,
 % muss der folgende Befehl durch diesen ersetzt werden:
-% \seminararbeittrue
-\seminararbeitfalse
+\seminararbeittrue
+% \seminararbeitfalse
 
+\newif\ifblockingnotice
 % Wenn die Arbeit keinen Sperrvermerk hat,
 % muss der folgende Befehl durch diesen ersetzt werden:
-% \blockingnoticefalse
-\blockingnoticetrue
+\blockingnoticefalse
+% \blockingnoticetrue
 
 % Die Daten für den Sperrvermerk. Diese müssen natürlich nur geändert werden,
 % wenn die Arbeit einen Sperrvermerk hat.
