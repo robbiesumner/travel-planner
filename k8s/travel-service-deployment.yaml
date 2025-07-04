@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: travel-service
-        image: ghcr.io/${GITHUB_REPOSITORY_OWNER}/travel-planner-travel_service:latest
+        image: ghcr.io/robbiesumner/travel-planner-travel_service:latest
         ports:
         - containerPort: 80
         env:

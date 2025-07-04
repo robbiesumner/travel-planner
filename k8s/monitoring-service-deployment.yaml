@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: monitoring-service
-        image: ghcr.io/${GITHUB_REPOSITORY_OWNER}/travel-planner-monitoring_service:latest
+        image: ghcr.io/robbiesumner/travel-planner-monitoring_service:latest
         ports:
         - containerPort: 80
         env:
