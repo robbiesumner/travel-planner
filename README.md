@@ -18,10 +18,12 @@ docker-compose up -d
 
 ## Travel Planner – Frontend
 
-![Home](screenshots/home.png)
-![Login](screenshots/login.png)
-![Form](screenshots/form.png)
-![Trip](screenshots/trip.png)
+<div style="display: flex; gap: 12px; justify-content: center;">
+  <img src="screenshots/home.png" alt="Home" width="220" height="140"/>
+  <img src="screenshots/login.png" alt="Login" width="220" height="140"/>
+  <img src="screenshots/form.png" alt="Form" width="220" height="140"/>
+  <img src="screenshots/trip.png" alt="Trip" width="220" height="140"/>
+</div>
 
 The frontend is built with Angular and provides a user-friendly interface for interacting with the travel planning services. It allows users to log in, register, view their trips, and get destination recommendations.
 
