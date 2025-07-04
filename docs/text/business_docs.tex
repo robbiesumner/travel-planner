@@ -27,6 +27,12 @@ Für den Administrator gibt es nur einen Prozess:
 Es gibt ein sehr einfaches 
 
 \subsection{Schritt-für-Schritt-Durchlauf}
-
-
+Startet man die Anwendung das Erste Mal, sieht man eine Login-Seite. Hier kann man sich mit der angegebenen E-Mail-Adresse und dem Passwort anmelden, sofern man einen Account hat. Hat man noch keinen Account erstellt, kann man dies über den Knopf \enqoute{Register now} machen.
+Auf der Register-Seite kann man mit E-Mail-Adresse, Name und Passwort einen Account erstellen. Gibt man zulässige Daten an und klickt auf \enquote{Register}, wird man zu einer \enqoute{Success}-Seite weitergeleitet, die die erfolgreiche Registrierung bestätigt.
+Hier kann man dann wieder zurück zur Login-Seite und sich mit den neu erstellten Accountdaten anmelden.
+Nach dem erfolgreichen Login gelangt man zu einer persönlichen Startseite, auf welcher gespeicherte Reisen angezeigt werden. Will man eine neue Reise planen, geht dies über den Button \enqoute{Plan a Trip}.
+Um dann Reiseempfehlungen zu erhalten, muss man zunächst einige Angaben machen. Hierbei müsen \enqoute{Recidency, Maximum Cost, Duration, Destination Type und Preferred Temperature} angegeben werden.
+Durch den Klick auf den Button \enquote{Get Recommendations} wird eine Anfrage an die Google GenAI API geschickt, die diese Angaben beinhaltet. Die API gibt dann eine Liste von fünf Reiseempfehlungen zurück. Auf der Übersichtseite werden diese mit einer Kurzbeschreibung angezeigt. Über den Button \enquote{Details} gelangt man zu einem detaillierten Reiseplan, der Empfehlungen für jeden Tag der Reise sowie allgemeine Reisetipps enthält. Unten auf der Seite, kann man die Reise speichern, um sie später wieder anschauen zu können. Beim Speichern wird man wieder auf die persönliche Startseite weitergeleitet, wo alle gespeicherten Reisen angezeigt werden.
+Über den Button \enquote{View Details} kann man auch die Details der gespeicherten Reisen einsehen.
+Über die Home-Schaltfläche oben links gelangt man jederzeit zurück zur persönlichen Startseite. Klickt man oben rechts auf \enquote{Account}, kann man den Username und Full Name einsehen, sowie sich ausloggen. Loggt man sich aus, wird man wieder auf die Login-Seite weitergeleitet.
  
