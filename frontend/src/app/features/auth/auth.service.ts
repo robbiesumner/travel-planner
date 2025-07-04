@@ -8,7 +8,7 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root',
 })
 export class AuthService {
-  private authUrl = environment.authServiceUrl + '/auth';
+  private authUrl = environment.authServiceUrl + 'auth/';
   constructor(private http: HttpClient) {}
 
   register(
@@ -24,7 +24,7 @@ export class AuthService {
       full_name: fullName,
       password: password,
     };
-    return this.http.post<any>(this.authUrl + '/register', body, { headers });
+    return this.http.post<any>(this.authUrl + 'register/', body, { headers });
   }
 
   login(username: string, password: string): Observable<any> {
@@ -35,12 +35,12 @@ export class AuthService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded',
     });
-    return this.http.post<any>(this.authUrl + '/token', body.toString(), {
+    return this.http.post<any>(this.authUrl + 'token/', body.toString(), {
       headers,
     });
   }
 
   getUserProfile(): Observable<User> {
-    return this.http.get<User>(this.authUrl + '/me');
+    return this.http.get<User>(this.authUrl + 'me/');
   }
 }
