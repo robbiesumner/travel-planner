@@ -58,3 +58,50 @@ When running docker compose, the service is available at http://localhost:8001.
 
 This microservice provides travel planning functionalities using FastAPI. It uses Google GenAI for generating travel plans and destination recommendations. It is important to set the `GENAI_API_KEY` in your `.env` file to use this service. You can get one from the [Google AI Studio](https://aistudio.google.com/u/1/apikey).
 When running the service, it will be available at http://localhost:8000.
+
+# Travel Planner – Frontend
+
+## Features
+- **Landing Page**  
+  Vollbild-Hero mit Titel, Teasertext und Call-to-Action-Button.
+- **Preferences Page**  
+  Reactive Form mit:  
+  - Wohnort (Textfeld)  
+  - Budget (Zahleneingabe)  
+  - Reisetyp (Dropdown: Mountains, Beach, City)  
+  - Reisedauer (Slider 1–30 Tage)  
+  - Temperatur (Slider –10…40 °C)  
+  - Toggles für „Meer vs. Berge“ und „Warm vs. Kalt“  
+  - Slider für Reiseerfahrung (0–10)
+- **Results Page** (`/results`)  
+  Kartenlayout mit Bild, Name und Score für jedes Vorschlagsziel.
+- **Detail Page** (`/results/:id`)  
+  Tages-Itinerary mit Aktivitäten und Tipps, geladen per API.
+- **History Page** (`/history`)  
+  Tabelle mit vergangener Reisen (Datum, Ziel, Details).
+- **Standalone-Components**  
+  Header, Footer und AppRoot ohne NgModule-Overhead.
+- **Lazy Loading**  
+  Ergebnis- und Detail-Komponenten werden bei Bedarf geladen.
+- **Responsive Design**  
+  Mobile-First-Styles, Hamburger-Menu, Grid-Layouts.
+- **SCSS-Theme**  
+  Zentrale Farb- und Typografie-Variablen.
+- **Accessibility**  
+  ARIA-Labels, Fokus-Styles und Tastaturnavigation.
+- **Animationen**  
+  Sanfte Fade-In-Effekte via Angular Animations.
+
+## Installation & Start
+
+1. **Repository klonen**  
+   ```bash
+   git clone git@github.com:nicolasb49/travel-planner.git
+   cd travel-planner/frontend
+
+2. Abhängigkeiten installieren
+    npm install
+
+3. Entwicklungsserver starten
+    npx ng serve --open
+    (alternativ mit global installierter CLI: ng serve --open)
