@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: ghcr.io/${GITHUB_REPOSITORY_OWNER}/travel-planner-frontend:latest
+        ports:
+        - containerPort: 80
+        env:
+        - name: TRAVEL_SERVICE_URL
+          value: "http://travel-service:80/"

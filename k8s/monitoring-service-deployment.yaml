@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: monitoring-service
+spec:
+  selector:
+    matchLabels:
+      app: monitoring-service
+  template:
+    metadata:
+      labels:
+        app: monitoring-service
+    spec:
+      containers:
+      - name: monitoring-service
+        image: ghcr.io/${GITHUB_REPOSITORY_OWNER}/travel-planner-monitoring_service:latest
+        ports:
+        - containerPort: 80
+        env:
+        - name: MONGODB_URI
+          value: "mongodb://mongo-db:27017/travel_planner"
+        - name: MONGODB_DB
+          value: "travel_planner"
