@@ -20,6 +20,12 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
 
   {
+    path: 'account',
+    loadComponent: () =>
+      import('./account/account').then((m) => m.AccountComponent),
+  },
+
+  {
     path: 'success',
     loadComponent: () =>
       import('./features/auth/success/success').then((m) => m.SuccessComponent),
@@ -43,9 +49,12 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./trip-details/trip-details').then((m) => m.TripDetailsComponent),
   },
-    {
+  {
     path: 'home',
-    loadComponent: () =>
-      import('./home/home').then((m) => m.HomeComponent),
+    loadComponent: () => import('./home/home').then((m) => m.HomeComponent),
+  },
+  {
+    path: 'trip/:id',
+    loadComponent: () => import('./trip/trip').then((m) => m.TripComponent),
   },
 ];

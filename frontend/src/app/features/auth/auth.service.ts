@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { User } from '../../core/models/user';
 
 @Injectable({
   providedIn: 'root',
@@ -37,5 +38,9 @@ export class AuthService {
     return this.http.post<any>(this.authUrl + '/token', body.toString(), {
       headers,
     });
+  }
+
+  getUserProfile(): Observable<User> {
+    return this.http.get<User>(this.authUrl + '/me');
   }
 }
