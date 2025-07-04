@@ -12,4 +12,8 @@ import { RouterModule }   from '@angular/router';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+  get homeLink(): string {
+    return localStorage.getItem('isLoggedIn') === 'true' ? '/home' : '/login';
+  }
+}
