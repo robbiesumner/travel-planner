@@ -13,15 +13,17 @@ spec:
     spec:
       containers:
       - name: auth-service
-        image: ghcr.io/${GITHUB_REPOSITORY_OWNER}/travel-planner-auth_service:latest
+        image: ghcr.io/robbiesumner/travel-planner-auth_service:latest
         ports:
         - containerPort: 80
         env:
-        - name: POSTGRES_USER
+        - name: DB_USER
           value: "postgres"
-        - name: POSTGRES_PASSWORD
+        - name: DB_PASSWORD
           value: "password"
-        - name: POSTGRES_DB
+        - name: DB_NAME
           value: "travel_planner"
-        - name: POSTGRES_HOST
+        - name: DB_HOST
           value: "postgres"
+        - name: DB_PORT
+          value: "5432"

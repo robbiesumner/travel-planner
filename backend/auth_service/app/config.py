@@ -6,11 +6,10 @@ class Settings(BaseSettings):
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 300
     # Postgres
-    POSTGRES_USER: str = "postgres"
-    POSTGRES_PASSWORD: str = "password"
-    POSTGRES_DB: str = "travel_planner"
-    POSTGRES_HOST: str = "localhost"
-    POSTGRES_PORT: int = 5432
-
+    DB_USER: str = "postgres"
+    DB_PASSWORD: str = "password"
+    DB_NAME: str = "travel_planner"
+    DB_HOST: str = "localhost"
+    DB_PORT: int = 5432
 
 settings = Settings()

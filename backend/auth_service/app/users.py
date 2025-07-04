@@ -6,8 +6,7 @@ from sqlalchemy.exc import NoResultFound
 from .models import User, UserInDB
 from .config import settings
 
-
-POSTGRES_URL = f"postgresql://{settings.POSTGRES_USER}:{settings.POSTGRES_PASSWORD}@{settings.POSTGRES_HOST}:{settings.POSTGRES_PORT}/{settings.POSTGRES_DB}"
+POSTGRES_URL = f"postgresql://{settings.DB_USER}:{settings.DB_PASSWORD}@{settings.DB_HOST}:{settings.DB_PORT}/{settings.DB_NAME}"
 
 Base = declarative_base()
 
