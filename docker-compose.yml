@@ -1,6 +1,9 @@
 services:
   frontend:
-    build: ./frontend
+    build: 
+      context: ./frontend
+      args:
+        CONFIGURATION: development
     ports:
       - 4200:80
     depends_on:
