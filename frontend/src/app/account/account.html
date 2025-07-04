@@ -1,0 +1,10 @@
+<div *ngIf="loading">Loading profile...</div>
+<div *ngIf="error">{{ error }}</div>
+<div *ngIf="user && !loading">
+  <h2>Account Details</h2>
+  <p><strong>Username:</strong> {{ user.username }}</p>
+  <p><strong>Full Name:</strong> {{ user.full_name }}</p>
+
+  <!-- logout -->
+  <button (click)="logout()">Logout</button>
+</div>

@@ -1,7 +1,7 @@
 export interface ItineraryDay {
   day: number;
   activities: string[];
-  tips: string[];
+  notes: string;
 }
 
 export type Itinerary = ItineraryDay[];

@@ -1,25 +1,60 @@
 import { Routes } from '@angular/router';
-import { LandingPageComponent } from './landing/landing-page.component';
-import { PreferencesComponent } from './preferences/preferences.component';
+import { RegisterComponent } from './features/auth/register/register';
+import { LoginComponent } from './features/auth/login/login';
+import { HomeComponent } from './home/home';
 
 export const routes: Routes = [
-  { path: '', component: LandingPageComponent },
-  { path: 'preferences', component: PreferencesComponent },
+  // if is logged in, redirect to recommendations, otherwise to login page
   {
-    path: 'results',
+    path: '',
+    component:
+      localStorage.getItem('isLoggedIn') === 'true'
+        ? HomeComponent
+        : LoginComponent,
+  },
+
+  { path: '', component: RegisterComponent },
+  { path: 'register', component: RegisterComponent },
+
+  { path: '', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
+
+  {
+    path: 'account',
     loadComponent: () =>
-      import('./results/destinations.component').then(m => m.DestinationsComponent)
+      import('./account/account').then((m) => m.AccountComponent),
+  },
+
+  {
+    path: 'success',
+    loadComponent: () =>
+      import('./features/auth/success/success').then((m) => m.SuccessComponent),
   },
   {
-    path: 'results/:id',
+    path: 'recommendations',
     loadComponent: () =>
-      import('./results/detail/destination-detail.component').then(
-        m => m.DestinationDetailComponent
-      )
+      import('./recommendations/recommendations').then(
+        (m) => m.RecommendationsComponent
+      ),
   },
   {
-    path: 'history',
+    path: 'recommendation-results',
     loadComponent: () =>
-      import('./history/history.component').then(m => m.HistoryComponent)
-  }
+      import('./recommendation-results/recommendation-results').then(
+        (m) => m.RecommendationResultsComponent
+      ),
+  },
+  {
+    path: 'trip-details',
+    loadComponent: () =>
+      import('./trip-details/trip-details').then((m) => m.TripDetailsComponent),
+  },
+  {
+    path: 'home',
+    loadComponent: () => import('./home/home').then((m) => m.HomeComponent),
+  },
+  {
+    path: 'trip/:id',
+    loadComponent: () => import('./trip/trip').then((m) => m.TripComponent),
+  },
 ];

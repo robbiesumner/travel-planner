@@ -1,0 +1,28 @@
+<mat-card *ngIf="trip; else loadingOrError">
+  <mat-card-header>
+    <h2>Trip Plan: {{ trip.destination }}</h2>
+  </mat-card-header>
+  <mat-card-content>
+    <div *ngFor="let day of trip.itinerary">
+      <h3>Day {{ day.day }}</h3>
+      <ul>
+        <li *ngFor="let activity of day.activities">{{ activity }}</li>
+      </ul>
+      <p><strong>Notes:</strong> {{ day.notes }}</p>
+      <mat-divider class="divider"></mat-divider>
+    </div>
+    <div *ngIf="trip.tips && trip.tips.length > 0">
+      <h3>Travel Tips</h3>
+      <ul>
+        <li *ngFor="let tip of trip.tips">{{ tip }}</li>
+      </ul>
+    </div>
+  </mat-card-content>
+</mat-card>
+<ng-template #loadingOrError>
+  <div *ngIf="loading">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    Loading trip details...
+  </div>
+  <div *ngIf="!loading && !trip">Trip not found or failed to load.</div>
+</ng-template>

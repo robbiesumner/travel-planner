@@ -1,21 +1,25 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Preferences } from '../models/preferences';
-import { Destination } from '../models/destination';
-import { Itinerary } from '../models/itinerary';
+import { DestinationPreferences, TravelConfig } from '../models/travelConfig';
+import { Destinations } from '../models/destination';
+import { Trip } from '../models/trip';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SuggestionService {
+  private apiUrl = 'http://localhost:8000/';
   constructor(private http: HttpClient) {}
 
-  getSuggestions(prefs: Preferences): Observable<Destination[]> {
-    return this.http.post<Destination[]>('/api/suggestions', prefs);
+  getDestinations(prefs: DestinationPreferences): Observable<Destinations> {
+    return this.http.post<Destinations>(
+      this.apiUrl + 'recommendations/destinations/',
+      prefs
+    );
   }
 
-  getItinerary(prefs: Preferences, id: string): Observable<Itinerary> {
-    return this.http.post<Itinerary>('/api/itinerary', { id, prefs });
+  getTrip(prefs: TravelConfig): Observable<Trip> {
+    return this.http.post<Trip>(this.apiUrl + 'recommendations/trip/', prefs);
   }
 }
