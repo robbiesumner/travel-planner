@@ -70,15 +70,26 @@
 
       </mat-form-field>
 
-      <div style="text-align: center; margin-top: 1.5rem">
+      <div
+        style="display: flex; justify-content: center; align-items: center; gap: 1rem; margin-top: 1.5rem;"
+      >
         <button
           mat-raised-button
           color="primary"
-          [disabled]="!recommendForm.valid"
+          [disabled]="!recommendForm.valid || loading"
         >
-          Get Recommendation
+          {{ loading ? 'Loading...' : 'Get Recommendation' }}
         </button>
+
+        <mat-progress-spinner
+          *ngIf="loading"
+          mode="indeterminate"
+          diameter="24"
+          strokeWidth="4"
+        ></mat-progress-spinner>
       </div>
+
+
     </form>
   </mat-card-content>
 </mat-card>
