@@ -9,7 +9,7 @@ Es ist jedoch anzumerken, dass im Laufe der Entwicklung die Anforderungen reduzi
 
 \subsection{Architekturübersicht}
 
-Im Projekt wurde entschieden, eine Microservice-basierte Webanwendung zu konzipieren. Die Gesamtarchitektur gliedert sich in ein Frontend, mehrere spezialisierte Backend-Services sowie eine Datenbank. Zusätzlich werden externe APIs zur Datenanreicherung eingebunden.  
+Im Projekt wurde entschieden, eine Microservice-basierte Webanwendung zu konzipieren. Die Gesamtarchitektur gliedert sich in ein zwei Frontends, mehrere spezialisierte Backend-Services sowie zwei Datenbanken. Zusätzlich werden externe APIs zur Datenanreicherung eingebunden.  
 Das Frontend übernimmt die Registrierung neuer Nutzer, die Verwaltung von Nutzerprofilen sowie die Abfrage personalisierter Reiseempfehlungen. Es wurde mit dem Angular-Framework als Single-Page-Application (SPA) realisiert.  
 
 Das Backend ist in zwei separate Microservices unterteilt:
@@ -21,11 +21,9 @@ Das Backend ist in zwei separate Microservices unterteilt:
 Beide Microservices greifen auf eine MongoDB-Datenbank zu, in der Nutzerstammdaten sowie individuelle Anfragen und Reiseinformationen gespeichert werden.  
 Abschließend wurden sämtliche Anwendungen containerisiert und über ein Kubernetes-Cluster orchestriert. Dies ermöglicht eine standardisierte, skalierbare und portable Bereitstellung der Anwendung.
 
-\section*{1.3 Konzepte aus der Vorlesung}
+\subsection{Konzepte aus der Vorlesung}
 
-\subsection*{1.3.1 Webentwicklung}
-
-\subsubsection*{1.3.1.1 Single-Page Application (SPA) mit Angular}
+\subsubsection{Single-Page Application (SPA) mit Angular}
 
 Für die Entwicklung des Frontends wurde das Angular-Framework eingesetzt. Die Anwendung basiert auf einer komponentenbasierten Architektur, bei der jede Funktionalität – wie Login, Registrierung oder Ergebnisanzeige – in eigenständigen Bausteinen gekapselt ist. Zur Gestaltung der Benutzeroberfläche kam Angular Material mit vorgefertigten UI-Komponenten wie Buttons, Formularfeldern und Navigationsleisten zum Einsatz.
 
@@ -36,12 +34,11 @@ Für die Entwicklung des Frontends wurde das Angular-Framework eingesetzt. Die A
   \item Angular-Routing für seitenübergreifende Navigation ohne Neuladen
 \end{itemize}
 
-\subsubsection*{1.3.1.2 REST-Kommunikation}
-\textit{(Kommt)}
+\subsubsection{REST}
 
-\subsection*{1.3.2 Verteilte Systeme}
+\subsubsection{Verteilte Systeme}
 
-\subsubsection*{Microservice-Architektur}
+\subsection{Microservice-Architektur}
 
 Das Backend wurde mithilfe von FastAPI in zwei Microservices umgesetzt. Die Architektur folgt dem Prinzip der Modularisierung und entspricht dem in der Vorlesung behandelten Aufbau verteilter Systeme.
 
@@ -51,7 +48,7 @@ Das Backend wurde mithilfe von FastAPI in zwei Microservices umgesetzt. Die Arch
   \item Kommunikation über REST-Schnittstellen (HTTP, JSON)
 \end{itemize}
 
-\subsubsection*{Containerisierung mit Docker}
+\subsubsection{Containerisierung mit Docker}
 
 Beide Microservices wurden containerisiert und in einem Docker-Setup betrieben. Aufbau, Build und Deployment der Container orientieren sich an den in der Vorlesung vermittelten Grundlagen.
 
@@ -62,7 +59,7 @@ Beide Microservices wurden containerisiert und in einem Docker-Setup betrieben. 
   \item Image-Build, Tagging und Ausführung mit \texttt{docker build} und \texttt{docker run}
 \end{itemize}
 
-\subsubsection*{Kubernetes Cluster}
+\subsubsection{Kubernetes Cluster}
 
 Die containerisierten Microservices wurden in einem Kubernetes-Cluster orchestriert. Damit wurde ein praxisnaher Anwendungsfall der in der Vorlesung behandelten Themen zu Skalierung und Verwaltung verteilter Systeme umgesetzt.
 
