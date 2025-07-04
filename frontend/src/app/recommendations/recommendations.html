@@ -11,7 +11,17 @@
 
       <mat-form-field appearance="outline">
         <mat-label>Maximum Cost (€)</mat-label>
-        <input matInput type="number" [(ngModel)]="cost" name="cost" required />
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="cost"
+          name="cost"
+          required
+          min="1"
+        />
+        <mat-error *ngIf="cost < 1">
+          Cost must be a positive number.
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
@@ -22,7 +32,11 @@
           [(ngModel)]="durationDays"
           name="durationDays"
           required
+          min="1"
         />
+        <mat-error *ngIf="durationDays < 1">
+          Duration must be at least 1 day.
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
@@ -47,7 +61,13 @@
           [(ngModel)]="temperature"
           name="temperature"
           required
+          min="-50"
+          max="50"
         />
+        <mat-error *ngIf="temperature < -50 || temperature > 50">
+          Please enter a value between -50°C and 50°C.
+        </mat-error>
+
       </mat-form-field>
 
       <div style="text-align: center; margin-top: 1.5rem">
