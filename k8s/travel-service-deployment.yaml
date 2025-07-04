@@ -12,19 +12,14 @@ spec:
         app: travel-service
     spec:
       containers:
-      - name: travel-service
-        image: ghcr.io/robbiesumner/travel-planner-travel_service:latest
-        ports:
-        - containerPort: 80
-        env:
-        - name: MONGODB_URI
-          value: "mongodb://mongo-db:27017/travel_planner"
-        - name: MONGODB_DB
-          value: "travel_planner"
-        - name: AUTH_SERVICE_INTERNAL_URL
-          value: "http://auth-service:80/"
-        - name: AUTH_SERVICE_EXTERNAL_URL
-          value: "http://localhost:8001/"
-        envFrom:
-        - configMapRef:
-            name: travel-service-config
+        - name: travel-service
+          image: ghcr.io/robbiesumner/travel-planner-travel_service:latest
+          ports:
+            - containerPort: 80
+          env:
+            - name: MONGODB_URI
+              value: "mongodb://mongo-db:27017/travel_planner"
+            - name: MONGODB_DB
+              value: "travel_planner"
+            - name: AUTH_SERVICE_INTERNAL_URL
+              value: "http://auth-service:80/"

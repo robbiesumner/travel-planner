@@ -6,18 +6,16 @@ services:
     depends_on:
       - travel_service
       - auth_service
-    environment:
-      - TRAVEL_SERVICE_URL=http://travel_service:80/
 
   auth_service:
     build: ./backend/auth_service
     ports:
       - 8001:80
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=travel_planner
-      - POSTGRES_HOST=postgres
+      - DB_USER=postgres
+      - DB_PASSWORD=password
+      - DB_NAME=travel_planner
+      - DB_HOST=postgres
     depends_on:
       - postgres
       
