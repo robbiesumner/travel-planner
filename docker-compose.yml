@@ -6,8 +6,6 @@ services:
     depends_on:
       - travel_service
       - auth_service
-    environment:
-      - TRAVEL_SERVICE_URL=http://travel_service:80/
 
   auth_service:
     build: ./backend/auth_service

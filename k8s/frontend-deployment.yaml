@@ -12,10 +12,7 @@ spec:
         app: frontend
     spec:
       containers:
-      - name: frontend
-        image: ghcr.io/robbiesumner/travel-planner-frontend:latest
-        ports:
-        - containerPort: 80
-        env:
-        - name: TRAVEL_SERVICE_URL
-          value: "http://travel-service:80/"
+        - name: frontend
+          image: ghcr.io/robbiesumner/travel-planner-frontend:latest
+          ports:
+            - containerPort: 80
