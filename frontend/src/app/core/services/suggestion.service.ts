@@ -4,12 +4,13 @@ import { Observable } from 'rxjs';
 import { DestinationPreferences, TravelConfig } from '../models/travelConfig';
 import { Destinations } from '../models/destination';
 import { Trip } from '../models/trip';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SuggestionService {
-  private apiUrl = 'http://localhost:8000/';
+  private apiUrl = environment.travelServiceUrl;
   constructor(private http: HttpClient) {}
 
   getDestinations(prefs: DestinationPreferences): Observable<Destinations> {

@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { DestinationPreferences, TravelConfig } from '../models/travelConfig';
-import { Destinations } from '../models/destination';
 import { Trip } from '../models/trip';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TripService {
-  private apiUrl = 'http://localhost:8000/';
+  private apiUrl = environment.travelServiceUrl;
   constructor(private http: HttpClient) {}
 
   saveTrip(trip: Trip): Observable<Trip> {

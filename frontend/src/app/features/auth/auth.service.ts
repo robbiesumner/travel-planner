@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../../core/models/user';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private authUrl = 'http://localhost:8001/auth'; // Update with your OAuth2 endpoint
-
+  private authUrl = environment.authServiceUrl + '/auth';
   constructor(private http: HttpClient) {}
 
   register(
