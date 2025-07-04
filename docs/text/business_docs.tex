@@ -1,0 +1,32 @@
+\section{Business Process-Dokumentation}
+
+\subsection{Prozessübersicht}
+Grundsätzlich gibt es zwei User-Gruppen, die in der Business Process-Dokumentation berücksichtigt werden müssen:
+
+\begin{itemize}
+    \item \textbf{End-User}: Diese Gruppe umfasst alle Personen, die das System nutzen, um sich Reisen empfehlen zu lassen und auf ihrem Profil zu speichern.
+    \item \textbf{Administratoren}: Diese Gruppe sitzt hinter dem System und kann Einsichten in analytiscshe Informationen des Systems gewinnen.
+\end{itemize}
+
+\subsubsection{Prozesse für End-User}
+
+Ein End-User kann folgende Prozesse durchlaufen:
+
+\begin{itemize}
+    \item \textbf{Registrierung}: Der End-User registriert sich im System, um ein Nutzerprofil zu erstellen. Dabei gibt er seinen Namen, E-Mail-Adresse und Passwort an. Diese Informationen werden über den Authentifizierungsservice verarbeitet und in der Datenbank gespeichert.
+    \item \textbf{Login}: Der End-User meldet sich an, um auf sein Profil und die Reiseempfehlungen zuzugreifen. Hierbei werden die Anmeldedaten überprüft und ein JWT-Token generiert, der für die Authentifizierung bei weiteren Anfragen verwendet wird.
+    \item \textbf{Reiseempfehlung anfordern}: Der End-User kann eine Anfrage für personalisierte Reiseempfehlungen stellen. Hierbei kann er verschiedene Parameter wie Reisedauer oder Budget angeben. Die Anfrage wird hier etwas "gemockt". Die Logik für die Empfehlungen wurde wegen dem großen Umfang nicht implementiert. Die Konfiguration wird einfach an eine API von Google GenAI weitergeleitet, die dann eine Antwort zurückgibt.
+    \item \textbf{Reise speichern}: Der End-User kann empfohlene Reisen in seinem Profil speichern. Hierzu ist eine OAuth2-Authentifizierung mit dem Authentifizierungsservice erforderlich. Die gespeicherten Reisen werden in einer NoSQl-Datenbank gespeichert, versehen mit der Information, welchem Nutzer sie zugeordnet sind.
+    \item \textbf{Reisen anzeigen}: Der End-User kann seine gespeicherten Reisen einsehen. Die Daten werden aus der NoSQL-Datenbank abgerufen und im Frontend angezeigt.
+\end{itemize}
+
+\subsubsection{Prozesse für Administratoren}
+
+Für den Administrator gibt es nur einen Prozess:
+
+Es gibt ein sehr einfaches 
+
+\subsection{Schritt-für-Schritt-Durchlauf}
+
+
+ 
