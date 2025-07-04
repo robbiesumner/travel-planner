@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { RegisterComponent } from './features/auth/register/register';
 import { LoginComponent } from './features/auth/login/login';
-import { RecommendationsComponent } from './recommendations/recommendations';
+import { HomeComponent } from './home/home';
 
 export const routes: Routes = [
   // if is logged in, redirect to recommendations, otherwise to login page
@@ -9,7 +9,7 @@ export const routes: Routes = [
     path: '',
     component:
       localStorage.getItem('isLoggedIn') === 'true'
-        ? RecommendationsComponent
+        ? HomeComponent
         : LoginComponent,
   },
 
@@ -42,5 +42,10 @@ export const routes: Routes = [
     path: 'trip-details',
     loadComponent: () =>
       import('./trip-details/trip-details').then((m) => m.TripDetailsComponent),
+  },
+    {
+    path: 'home',
+    loadComponent: () =>
+      import('./home/home').then((m) => m.HomeComponent),
   },
 ];

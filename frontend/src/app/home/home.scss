@@ -1,0 +1,35 @@
+mat-card {
+  max-width: 1000px; 
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+mat-card-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+mat-card-subtitle {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+mat-card-content p {
+  margin: 0.25rem 0;
+}
+
+mat-card-actions {
+  margin-top: 0.5rem;
+}
+
+button[mat-button] {
+  text-transform: none;
+}
+
+h3 {
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+

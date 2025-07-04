@@ -42,7 +42,7 @@ export class LoginComponent {
           this.loginValid = true;
           localStorage.setItem('jwt', token);
           localStorage.setItem('isLoggedIn', 'true');
-          this.router.navigate(['/recommendations']);
+          this.router.navigate(['/home']);
         } else {
           this.loginValid = false;
         }
