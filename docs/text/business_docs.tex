@@ -1,6 +1,19 @@
 \section{Business Process-Dokumentation}
 
 \subsection{Prozessübersicht}
+
+Im Projekt wurden drei zentrale Geschäftsprozesse abgebildet: die Registrierung, die Authentifizierung (Login) und die Reisesuche mit optionaler Speicherung.
+
+Bei der Registrierung werden Benutzerdaten wie E-Mail, Passwort und Name über das Frontend erfasst und an den Authentication-Microservice übergeben. Dort erfolgt mithilfe der Bibliothek Pydantic v2 eine Datenvalidierung, wodurch Eingabefehler frühzeitig erkannt werden. Das Passwort wird mit dem sicheren Hashing-Verfahren bcrypt verschlüsselt und anschließend in einer PostgreSQL-Datenbank gespeichert.
+
+Beim Login wird der Nutzer erneut über E-Mail und Passwort authentifiziert. Bei erfolgreicher Anmeldung wird ein sogenannter JWT-Token (JSON Web Token) erstellt und dem Nutzer übermittelt. Dieser Token dient als Identitätsnachweis und wird bei nachfolgenden Anfragen an andere Microservices verwendet, um den Nutzer zu identifizieren.
+
+Ein weiterer zentraler Prozess ist die Reisesuche. Nach erfolgreicher Authentifizierung kann der Nutzer über das Frontend individuelle Wünsche und Kriterien für seine Reise eingeben. Diese Informationen werden an den Travel-Planner-Microservice übergeben. Dieser analysiert die Daten mithilfe des Sprachmodells Gemini und generiert daraufhin passende Reisezielvorschläge. Die Ergebnisse werden im Frontend ausgegeben. Nutzer haben anschließend die Möglichkeit, eine Reise dauerhaft zu speichern. Dabei wird mithilfe des JWT-Tokens überprüft, ob der Nutzer angemeldet ist. Die Reiseinformationen werden dann in einer MongoDB-Datenbank abgelegt und mit einer eindeutigen Nutzerkennung verknüpft. Auf diese Weise ist sichergestellt, dass jeder Nutzer nur Zugriff auf seine eigenen gespeicherten Reisen hat.
+
+Zur Umsetzung dieser Prozesse wurden gezielt technische Maßnahmen gewählt, die die Anforderungen des Systems effektiv unterstützen. Die Nutzung von FastAPI als Framework ermöglicht eine schnelle und effiziente Entwicklung der REST-Schnittstellen. Durch die Integration von Swagger UI kann die API direkt getestet werden, was insbesondere während der Entwicklung und im Austausch mit anderen Projektteilen von Vorteil ist. Die Kombination aus JWT-basiertem Login, bcrypt zur Passwortverschlüsselung sowie einer klaren Trennung zwischen Authentifizierung und Anwendungslogik über Microservices trägt zur Sicherheit und Skalierbarkeit des Systems bei. Die Datenvalidierung über Pydantic sorgt für Robustheit und reduziert Fehlerquellen bereits bei der Eingabe.
+
+\subsection{User-Gruppen}
+
 Grundsätzlich gibt es zwei User-Gruppen, die in der Business Process-Dokumentation berücksichtigt werden müssen:
 
 \begin{itemize}

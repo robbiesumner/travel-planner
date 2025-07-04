@@ -62,11 +62,17 @@ Außerdem ist ein Interceptor implementiert, der alle HTTP-Anfragen abfängt und
 
 Das Backend wurde mithilfe von FastAPI in zwei Microservices umgesetzt. Die Architektur folgt dem Prinzip der Modularisierung und entspricht dem in der Vorlesung behandelten Aufbau verteilter Systeme.
 
-\subsubsection{Containerisierung mit Docker}
+\subsubsection{REST-APIs}
+
+Beide Microservices bieten REST-APIs an. Es wurde bewusst auf gRPC und Event-basierte Kommunikation verzichtet, um die Komplexität zu reduzieren und eine einfache Integration mit dem Frontend zu ermöglichen. REST-APIs haben sich als Standard bewährt und sind sehr gut integrierbar, insbesondere in Kombination mit Angular. Die APIs sind so gestaltet, dass sie JSON-Daten austauschen, was eine einfache Handhabung und Verarbeitung der Daten ermöglicht.
+
+Schnittstellen mit gRPC hätte eventuell Vorteile in Bezug auf Performance und Typensicherheit bieten können, vor allem wenn wir mit vielen verschiedenen abhängigen Services arbeiten. gRPC ist jedoch nicht direkt in Angular integriert und würde die Komplexität erhöhen.
+
+Event-basierte Kommunikation hätte eine asynchrone Verarbeitung ermöglicht, was in diesem Fall jedoch gar nicht notwendig war.
+
+\subsubsection{Containerisierung und Orchestrierung}
 
 Beide Microservices wurden containerisiert und in einem Docker-Setup betrieben. Aufbau, Build und Deployment der Container orientieren sich an den in der Vorlesung vermittelten Grundlagen.
-
-\subsubsection{Kubernetes Cluster}
 
 Die containerisierten Microservices wurden in einem Kubernetes-Cluster orchestriert. Damit wurde ein praxisnaher Anwendungsfall der in der Vorlesung behandelten Themen zu Skalierung und Verwaltung verteilter Systeme umgesetzt.
 
@@ -84,24 +90,22 @@ Die Benutzerinformationen werden in einer PostgreSQL-Datenbank persistiert. Post
 
 Die gesamte Systemarchitektur orientiert sich am HATEOAS-Prinzip (Hypermedia as the Engine of Application State). Dadurch werden dem Client über die API nicht nur Daten, sondern auch Informationen über mögliche nächste Schritte zur Verfügung gestellt. Dies trägt zu einer entkoppelten, wartbaren Struktur bei und erleichtert die Integration mehrerer Microservices.
 
-\subsubsection{User Gruppen}
+\subsubsection{Travel-Microservice}
 
-In unserem System gibt es verschiedene Benutzergruppen, die unterschiedliche Funktionen nutzen.
+Der Travel-Planner-Microservice ist für die Verarbeitung von Nutzeranfragen und die Generierung personalisierter Reiseempfehlungen zuständig. Er kommuniziert mit dem Authentifizierungs-Microservice, um sicherzustellen, dass nur authentifizierte Nutzer auf die Funktionen eines Profis zugreifen können.
 
-Die Hauptnutzergruppe besteht aus Endnutzern, zum Beispiel Familien oder Einzelpersonen, die auf einfache Weise eine Reise planen möchten. Diese Nutzer können sich passende Reiseziele vorschlagen lassen, basierend auf ihren persönlichen Präferenzen. Darüber hinaus besteht die Möglichkeit, Reisen zu speichern, um später erneut darauf zugreifen zu können. Neben konkreten Zielen lassen sich auch Aktivitäten für die geplante Reise anzeigen.
+Die Implementierung erfolgt ebenfalls mit FastAPI, um eine konsistente und performante API zu gewährleisten. Der Microservice nutzt die Google GenAI API, um auf Basis der Nutzerpräferenzen personalisierte Reiseempfehlungen zu generieren. Diese Empfehlungen werden in einem strukturierten Format zurückgegeben, das sowohl Reisedetails als auch allgemeine Tipps enthält.
 
-Zusätzlich existieren administrative oder technische Nutzer, die über einen separaten Monitoring-Service Zugriff auf Systemdaten und Nutzungsinformationen erhalten. Dieser Service dient der Analyse und Kontrolle des Gesamtsystems.
+Es gibt zusätzlich zu den Endpunkten für die Generierung von Reiseempfehlungen auch Endpunkte zum Speichern und Abrufen von Reisen. Diese Funktionalität ermöglicht es Nutzern, ihre geplanten Reisen zu speichern und später wieder abzurufen. Die gespeicherten Reisen werden in einer MongoDB-Datenbank persistiert, die sich gut für unstrukturierte Daten eignet und eine flexible Schema-Definition ermöglicht.
 
-\subsubsection{Geschäftsprozesse}
-
-Im Projekt wurden drei zentrale Geschäftsprozesse abgebildet: die Registrierung, die Authentifizierung (Login) und die Reisesuche mit optionaler Speicherung.
-
-Bei der Registrierung werden Benutzerdaten wie E-Mail, Passwort und Name über das Frontend erfasst und an den Authentication-Microservice übergeben. Dort erfolgt mithilfe der Bibliothek Pydantic v2 eine Datenvalidierung, wodurch Eingabefehler frühzeitig erkannt werden. Das Passwort wird mit dem sicheren Hashing-Verfahren bcrypt verschlüsselt und anschließend in einer PostgreSQL-Datenbank gespeichert.
-
-Beim Login wird der Nutzer erneut über E-Mail und Passwort authentifiziert. Bei erfolgreicher Anmeldung wird ein sogenannter JWT-Token (JSON Web Token) erstellt und dem Nutzer übermittelt. Dieser Token dient als Identitätsnachweis und wird bei nachfolgenden Anfragen an andere Microservices verwendet, um den Nutzer zu identifizieren.
-
-Ein weiterer zentraler Prozess ist die Reisesuche. Nach erfolgreicher Authentifizierung kann der Nutzer über das Frontend individuelle Wünsche und Kriterien für seine Reise eingeben. Diese Informationen werden an den Travel-Planner-Microservice übergeben. Dieser analysiert die Daten mithilfe des Sprachmodells Gemini und generiert daraufhin passende Reisezielvorschläge. Die Ergebnisse werden im Frontend ausgegeben. Nutzer haben anschließend die Möglichkeit, eine Reise dauerhaft zu speichern. Dabei wird mithilfe des JWT-Tokens überprüft, ob der Nutzer angemeldet ist. Die Reiseinformationen werden dann in einer MongoDB-Datenbank abgelegt und mit einer eindeutigen Nutzerkennung verknüpft. Auf diese Weise ist sichergestellt, dass jeder Nutzer nur Zugriff auf seine eigenen gespeicherten Reisen hat.
-
-Zur Umsetzung dieser Prozesse wurden gezielt technische Maßnahmen gewählt, die die Anforderungen des Systems effektiv unterstützen. Die Nutzung von FastAPI als Framework ermöglicht eine schnelle und effiziente Entwicklung der REST-Schnittstellen. Durch die Integration von Swagger UI kann die API direkt getestet werden, was insbesondere während der Entwicklung und im Austausch mit anderen Projektteilen von Vorteil ist. Die Kombination aus JWT-basiertem Login, bcrypt zur Passwortverschlüsselung sowie einer klaren Trennung zwischen Authentifizierung und Anwendungslogik über Microservices trägt zur Sicherheit und Skalierbarkeit des Systems bei. Die Datenvalidierung über Pydantic sorgt für Robustheit und reduziert Fehlerquellen bereits bei der Eingabe.
+Auch werden hier Log-Daten erfasst, die für die spätere Analyse und Visualisierung der Nutzung des Systems verwendet werden können. Diese Log-Daten werden in einer separaten MongoDB-Datenbank gespeichert und enthalten Informationen über häufige Suchanfragen, beliebte Reiseziele und andere relevante Metriken.
 
 \subsection{Kompromisse und Abweichungen}
+
+Im Rahmen der Entwicklung wurden einige Kompromisse und Abweichungen von den ursprünglich geplanten Zielen vorgenommen:
+
+\begin{itemize}
+  \item Die Implementierung der Logik für die Generierung von Reiseempfehlungen wurde aufgrund des Umfangs und der Komplexität auf die Nutzung der Google GenAI API beschränkt. Dadurch konnte die Funktionalität schneller bereitgestellt werden, allerdings wurde die Möglichkeit einer eigenen Implementierung komplexer Logik aufgegeben.
+  \item Die Authentifizierung wurde hier selbst implementiert und birgt sicherlich einige Sicherheitsrisiken, die bei einem professionellen Deployment berücksichtigt werden müssten. Idealerweise sollte hier ein bewährter ID-Provider wie Google verwendet werden, damit die Sicherheit und Skalierbarkeit gewährleistet ist. In diesem Projekt wurde jedoch bewusst auf eine eigene Implementierung gesetzt, um die Funktionsweise besser zu verstehen und den Aufwand zu verringern.
+  \item Das Monitoring und die Analyse der Log-Daten ist sehr grundlegend umgesetzt. Es ist ersichtlich, dass hier nocht viel Potenzial für Verbesserungen besteht. Dieser Service soll eine bloße Demonstration davon sein, dass es möglich ist, Log-Daten zu sammeln und auszuwerten. Es gibt keine Authentifizierung für den Zugriff auf die Log-Daten, was in einer produktiven Umgebung ein Sicherheitsrisiko darstellen würde. Die Daten werden nur sehr grundlegend dargestellt. 
+\end{itemize}
