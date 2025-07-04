@@ -1,15 +1,29 @@
-<mat-card *ngFor="let destination of destinations" style="margin-bottom: 1rem">
-  <mat-card-title>{{ destination.name }}</mat-card-title>
-  <mat-card-content>
-    <p>{{ destination.description }}</p>
-  </mat-card-content>
-  <mat-card-actions>
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="getDetails(destination.name)"
-    >
-      Get Trip Details
-    </button>
-  </mat-card-actions>
-</mat-card>
+<div
+  style="display: flex; justify-content: center; align-items: center; margin-bottom: 1.5rem;"
+  *ngIf="loading"
+>
+  <mat-progress-spinner
+    mode="indeterminate"
+    diameter="36"
+    strokeWidth="4"
+  ></mat-progress-spinner>
+</div>
+
+<ng-container *ngIf="!loading">
+  <mat-card *ngFor="let destination of destinations" style="margin-bottom: 1rem">
+    <mat-card-title>{{ destination.name }}</mat-card-title>
+    <mat-card-content>
+      <p>{{ destination.description }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="getDetails(destination.name)"
+        [disabled]="loading"
+      >
+        Get Trip Details
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</ng-container>
